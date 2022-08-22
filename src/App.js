@@ -11,11 +11,12 @@ function App() {
   return (
     <div>
       <Header />
-      <Routes>
+      {/* <Routes>
         <Route path='/poll' element={<PollCreate />} />
         <Route path='/poll/:pollID' element={<PollResponse />} />
         <Route path='/poll/:pollID/results' element={<PollResults />} />
-      </Routes>
+      </Routes> */}
+      <PollResponse />
       <Footer />
     </div>
   );
