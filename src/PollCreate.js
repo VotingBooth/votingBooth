@@ -19,16 +19,19 @@ function PollCreate() {
         const dbRef = ref(database)
         const newKey = push(dbRef).key;
         const postData = {
-            question: question
+            question: question,
+            answer: {
+                no: 0,
+                yes: 0
+            },
+            userID: [""]
         }
         const updates = {};
         updates[ newKey + '/'] = postData
         update(dbRef, updates);
 
         navigate(`/poll/${newKey}`);
-
     }
-
 
     return (
 
