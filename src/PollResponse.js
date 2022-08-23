@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from './firebase'
-import { ref, getDatabase, onValue,  update, increment } from 'firebase/database'
+import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
     const [userSelection, setUserSelection] = useState("")
-    const { pollID } = useParams();   
+    const [votedStatus, setVotedStatus] = useState('')
+    const { pollID } = useParams();
     let navigate = useNavigate();
 
     useEffect(() => {
+        // Check voted status in local storage
+        const voted = localStorage.getItem(`${pollID}`);
+        setVotedStatus(voted)
+        // Firebase Data
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}`)
         onValue(dbRef, (response) => {
@@ -21,6 +26,8 @@ function PollResponse() {
             setAnswer1(answers[0])
             setAnswer2(answers[1])
         })
+
+
     }, [pollID])
 
     const handleSubmit = (e) => {
@@ -37,7 +44,9 @@ function PollResponse() {
                 [answer2]: increment(1)
             });
         }
-
+        // set Voted Staus to Local Storage
+        localStorage.setItem(`${pollID}`, 'voted');
+        // Navigate to results page
         navigate(`/poll/${pollID}/results`)
     }
 
