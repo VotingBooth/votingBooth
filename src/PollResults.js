@@ -1,14 +1,23 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { useState } from 'react'
+import { firebase } from './firebase'
+import { ref, onValue, getDatabase } from 'firebase/database'
 
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
-
+    const [pollResults, setPollResults] = useState([])
     const { pollID } = useParams();
 
-    const testData = [156, 243]
+    useEffect(() => {
+        const database = getDatabase(firebase)
+        const dbRef = ref(database, `${pollID}/answer`)
+        onValue(dbRef, (response) => {
+            setPollResults(Object.values(response.val()))
+        })
+    }, [pollID])
 
     const options = {
         elements: {
@@ -32,7 +41,7 @@ function PollResults() {
         datasets: [
             {
                 label: 'TestData',
-                data: testData,
+                data: pollResults,
                 borderColor: ['rgb(255, 99, 132, 0.5)', 'blue'],
                 backgroundColor: ['rgb(255, 99, 132, 0.5)', 'blue']
             }
