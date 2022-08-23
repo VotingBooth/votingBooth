@@ -1,37 +1,57 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from './firebase'
-import { ref, onValue, getDatabase } from 'firebase/database'
+import { ref, getDatabase, onValue,  update, increment } from 'firebase/database'
 
 function PollResponse() {
-    const [dataPollID, setDataPollID] = useState([]);
+    const [dataPoll, setDataPoll] = useState([]);
+    const [userSelection, setUserSelection] = useState("")
+    const { pollID } = useParams();   
+    let navigate = useNavigate();
 
     useEffect(() => {
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
-
+        const dbRef = ref(database, `${pollID}/question`)
         onValue(dbRef, (response) => {
-            const newState = [];
-
-            const data = response.val()
-
-            for (let fbkey in data) {
-                newState.push([
-                    data[fbkey]
-                ])
-            }
-            setDataPollID(newState)
+            setDataPoll(response.val())
         })
     }, [])
 
-    const { pollID } = useParams();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const database = getDatabase(firebase)
+        const dbRef = ref(database, `${pollID}/answer`)
 
+        if (userSelection === "no" ) {
+            update(dbRef, {
+                no: increment(1)
+            });
+        } else if (userSelection === "yes") {
+            update(dbRef, {
+                yes: increment(1)
+            });
+        }
+
+        navigate(`/poll/${pollID}/results`)
+    }
+
+    const handleChange = (e) => {
+        setUserSelection(e.target.value)
+    }
     return (
         <>
-            <div>{pollID}</div>
-            <p>Response</p>
+            <form onSubmit={handleSubmit}>
+                <legend>{dataPoll}</legend>
+                <label htmlFor='pollQuestion'>
+                    <input type="radio" id="pollQuestion" value="yes" name="pollQuestion" onChange={handleChange}
+                    />Yes
+                    <input type="radio" id="pollQuestion" value="no" name="pollQuestion" onChange={handleChange}
+                    />No
+                </label>
+                <button>Submit</button>
+            </form>
         </>
     )
 }
 
-export default PollResponse
+export default PollResponse;
