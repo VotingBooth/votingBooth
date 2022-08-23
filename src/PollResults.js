@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { firebase } from './firebase'
 import { ref, onValue, getDatabase } from 'firebase/database'
 
+
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
     const [pollResults, setPollResults] = useState([])
