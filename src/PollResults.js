@@ -5,6 +5,7 @@ import { Chart } from 'react-chartjs-2';
 import { useState } from 'react'
 import { firebase } from './firebase'
 import { ref, onValue, getDatabase } from 'firebase/database'
+import ShareButton from './ShareButton'
 
 
 function PollResults() {
@@ -57,6 +58,7 @@ function PollResults() {
         <>
             <div>{pollID}</div>
             <p>Results</p>
+            <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
             <form>
                 <legend>Select a chart type:</legend>
                 <div>
