@@ -9,6 +9,7 @@ import { ref, onValue, getDatabase } from 'firebase/database'
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
     const [pollResults, setPollResults] = useState([])
+    const [pollLabels, setPollLabels] = useState([])
     const { pollID } = useParams();
 
     useEffect(() => {
@@ -16,6 +17,8 @@ function PollResults() {
         const dbRef = ref(database, `${pollID}/answer`)
         onValue(dbRef, (response) => {
             setPollResults(Object.values(response.val()))
+            setPollLabels(Object.keys(response.val()))
+
         })
     }, [pollID])
 
@@ -34,13 +37,11 @@ function PollResults() {
         },
     };
 
-    const labels = ['no', 'yes']
-
     const data = {
-        labels,
+        labels: pollLabels,
         datasets: [
             {
-                label: 'TestData',
+                label: 'Reults',
                 data: pollResults,
                 borderColor: ['rgb(255, 99, 132, 0.5)', 'blue'],
                 backgroundColor: ['rgb(255, 99, 132, 0.5)', 'blue']
