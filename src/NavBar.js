@@ -8,10 +8,10 @@ const NavBar = () => {
                 <Link to="/">Voting Booth</Link>            
                 <ul>
                     <li>
-                        <a href="#">Login</a>
+                        Login
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        About
                     </li>
                 </ul>
             </nav>
