@@ -39,7 +39,7 @@ function PollCreate() {
             <h2>Enter your poll question below</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='userInput'>Please enter your question:</label>
-                <input maxlength='140' type="text" id='userInput' onChange={handleChange}/>
+                <input maxLength='140' type="text" id='userInput' onChange={handleChange}/>
                 <button>
                     <p>Submit Question</p>
                 </button>

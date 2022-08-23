@@ -15,7 +15,7 @@ function PollResponse() {
         onValue(dbRef, (response) => {
             setDataPoll(response.val())
         })
-    }, [])
+    }, [pollID])
 
     const handleSubmit = (e) => {
         e.preventDefault();
