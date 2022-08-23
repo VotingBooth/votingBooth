@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from './firebase'
 import { ref, getDatabase, onValue,  update, increment } from 'firebase/database'
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [userSelection, setUserSelection] = useState("")
-    const pollId = "-NA6ECppJ3JdPUXNNMpU"
+    const { pollID } = useParams();   
+    let navigate = useNavigate();
 
     useEffect(() => {
         const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollId}/question`)
+        const dbRef = ref(database, `${pollID}/question`)
         onValue(dbRef, (response) => {
             setDataPoll(response.val())
         })
@@ -19,7 +20,7 @@ function PollResponse() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollId}/answer`)
+        const dbRef = ref(database, `${pollID}/answer`)
 
         if (userSelection === "no" ) {
             update(dbRef, {
@@ -30,6 +31,8 @@ function PollResponse() {
                 yes: increment(1)
             });
         }
+
+        navigate(`/poll/${pollID}/results`)
     }
 
     const handleChange = (e) => {
@@ -38,7 +41,7 @@ function PollResponse() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <p>{dataPoll}</p>
+                <legend>{dataPoll}</legend>
                 <label htmlFor='pollQuestion'>
                     <input type="radio" id="pollQuestion" value="yes" name="pollQuestion" onChange={handleChange}
                     />Yes
@@ -51,4 +54,4 @@ function PollResponse() {
     )
 }
 
-export default PollResponse
+export default PollResponse;
