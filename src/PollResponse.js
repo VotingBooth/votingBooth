@@ -5,6 +5,8 @@ import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
+    const [answer1, setAnswer1] = useState('');
+    const [answer2, setAnswer2] = useState('');
     const [userSelection, setUserSelection] = useState("")
     const [votedStatus, setVotedStatus] = useState('')
     const { pollID } = useParams();
@@ -16,9 +18,13 @@ function PollResponse() {
         setVotedStatus(voted)
         // Firebase Data
         const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollID}/question`)
+        const dbRef = ref(database, `${pollID}`)
         onValue(dbRef, (response) => {
-            setDataPoll(response.val())
+            console.log(response.val())
+            setDataPoll(response.val().question)
+            const answers = Object.keys(response.val().answer)
+            setAnswer1(answers[0])
+            setAnswer2(answers[1])
         })
 
 
@@ -29,13 +35,13 @@ function PollResponse() {
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}/answer`)
 
-        if (userSelection === "no") {
+        if (userSelection === answer1 ) {
             update(dbRef, {
-                no: increment(1)
+                [answer1]: increment(1)
             });
-        } else if (userSelection === "yes") {
+        } else if (userSelection === answer2) {
             update(dbRef, {
-                yes: increment(1)
+                [answer2]: increment(1)
             });
         }
         // set Voted Staus to Local Storage
@@ -49,19 +55,16 @@ function PollResponse() {
     }
     return (
         <>
-            {votedStatus !== 'voted' ?
-                <form onSubmit={handleSubmit}>
-                    <legend>{dataPoll}</legend>
-                    <label htmlFor='pollQuestion'>
-                        <input type="radio" id="pollQuestion" value="yes" name="pollQuestion" onChange={handleChange}
-                        />Yes
-                        <input type="radio" id="pollQuestion" value="no" name="pollQuestion" onChange={handleChange}
-                        />No
-                    </label>
-                    <button>Submit</button>
-                </form>
-                :
-                <p>You've already voted!</p>}
+            <form onSubmit={handleSubmit}>
+                <legend>{dataPoll}</legend>
+                <label htmlFor='pollQuestion'>
+                    <input type="radio" id="pollQuestion" value={answer1} name="pollQuestion" onChange={handleChange}
+                    />{answer1}
+                    <input type="radio" id="pollQuestion" value={answer2} name="pollQuestion" onChange={handleChange}
+                    />{answer2}
+                </label>
+                <button>Submit</button>
+            </form>
         </>
     )
 }
