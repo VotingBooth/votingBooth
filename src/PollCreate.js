@@ -3,15 +3,14 @@ import { firebase } from './firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useProfanityFilter from './useProfanityFilter';
+import { filterProfanity } from './filterProfanity'
 
 
 function PollCreate() {
-    const [question, setQuestion] = useState('');
+    const [question, setQuestion] = useState();
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
     const navigate = useNavigate();
-    const { filteredQuery } = useProfanityFilter(question)
 
 
     const handleChange = (e) => {
@@ -26,24 +25,26 @@ function PollCreate() {
         setAnswer2(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const filteredA1 = await filterProfanity(answer1)
+        const filteredA2 = await filterProfanity(answer2)
+        const filteredQ = await filterProfanity(question)
         const database = getDatabase(firebase)
         const dbRef = ref(database)
         const newKey = push(dbRef).key;
         const postData = {
-            question: filteredQuery,
+            question: filteredQ,
             answer: {
-                [answer1]: 0,
-                [answer2]: 0
+                [filteredA1]: 0,
+                [filteredA2]: 0
             }
         }
         const updates = {};
         updates[newKey + '/'] = postData
         update(dbRef, updates);
-        // console.log(answer1, answer2, 'this worked');
-
         navigate(`/poll/${newKey}`);
+
     }
 
     return (
