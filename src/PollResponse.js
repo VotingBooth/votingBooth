@@ -55,6 +55,7 @@ function PollResponse() {
     }
     return (
         <>
+            {votedStatus !== 'voted' ?
             <form onSubmit={handleSubmit}>
                 <legend>{dataPoll}</legend>
                 <label htmlFor='pollQuestion'>
@@ -65,6 +66,8 @@ function PollResponse() {
                 </label>
                 <button>Submit</button>
             </form>
+            :
+            <p>You have already voted!</p>}
         </>
     )
 }

@@ -44,22 +44,29 @@ function PollCreate() {
     }
 
     return (
-
+        <>
+        <div className="wrapper appInfo">
+                <h2>Welcome to your favorite Anonymous Voting Booth</h2>
+                <p>Enter your question and options below, and we will create a shareable poll link.</p>
+                <p>Reducing the stress of decision making, one poll at a time </p>
+        </div>
         <div>
             <h2>Enter your poll question below</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor='userInput'>Please enter your question:</label>
+                <label htmlFor='userInput'>Poll question:</label>
                 <input maxLength='140' type="text" id='userInput' onChange={handleChange}/>
-                <label htmlFor='answer1'>Please enter answer #1:</label>
+                <label htmlFor='answer1'>Option #1:</label>
                 <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1}/>
-                <label htmlFor='answer2'>Please enter answer #1:</label>
+                <label htmlFor='answer2'>Option #2:</label>
                 <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2}/>
                 <button>
-                    <p>Submit Questions and Answers</p>
+                    <p>Create Poll</p>
                 </button>
             </form>
 
         </div>
+        </>
+
     )
 }
 

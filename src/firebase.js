@@ -1,10 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getDatabase } from "firebase/database";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyC91BM3u0TFtf3aM_9-abe4qlVrpqijuzo",
     authDomain: "votingbooth-693ab.firebaseapp.com",
@@ -17,6 +13,25 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebase = initializeApp(firebaseConfig);
-// export default firebase
+export const auth = getAuth();
 
-// export const database = getDatabase();
+
+// signInWithPopup(auth, provider)
+//   .then((result) => {
+//     const credential = GoogleAuthProvider.credentialFromResult(result);
+//     // ...
+//   }).catch((error) => {
+//     // ...
+//   });
+
+//   export const signInAnon = async () => {
+//     try {
+//       await signInAnonymously(auth)
+//     } catch (err) {
+//       alert(err.message);
+//     }
+//   };
+  
+//   export const logout = () => {
+//     signOut(auth);
+//   };
