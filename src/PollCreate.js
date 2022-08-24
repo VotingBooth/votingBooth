@@ -71,16 +71,16 @@ function PollCreate() {
     return (
 
         <div>
-            <h2>Enter your poll question below</h2>
+            <h2>Create your Poll below</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor='userInput'>Please enter your question:</label>
+                <label htmlFor='userInput'>Question</label>
                 <input maxLength='140' type="text" id='userInput' onChange={handleChange} />
-                <label htmlFor='answer1'>Please enter answer #1:</label>
+                <label htmlFor='answer1'>Option #1</label>
                 <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} />
-                <label htmlFor='answer2'>Please enter answer #1:</label>
+                <label htmlFor='answer2'>Option #2</label>
                 <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} />
                 <button>
-                    <p>Submit Questions and Answers</p>
+                    <p>Create Poll</p>
                 </button>
             </form>
 
