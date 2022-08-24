@@ -3,6 +3,7 @@ import {firebase} from './firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ShareButton from './ShareButton';
 
 
 function PollCreate() {
@@ -43,6 +44,7 @@ function PollCreate() {
                 <button>
                     <p>Submit Question</p>
                 </button>
+                <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
             </form>
         </div>
     )

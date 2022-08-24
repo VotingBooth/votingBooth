@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from './firebase'
 import { ref, getDatabase, onValue,  update, increment } from 'firebase/database'
+import ShareButton from './ShareButton'
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
@@ -49,6 +50,7 @@ function PollResponse() {
                     />No
                 </label>
                 <button>Submit</button>
+                <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
             </form>
         </>
     )
