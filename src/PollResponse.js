@@ -1,21 +1,33 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from './firebase'
-import { ref, getDatabase, onValue,  update, increment } from 'firebase/database'
-import ShareButton from './ShareButton'
+import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
+    const [answer1, setAnswer1] = useState('');
+    const [answer2, setAnswer2] = useState('');
     const [userSelection, setUserSelection] = useState("")
-    const { pollID } = useParams();   
+    const [votedStatus, setVotedStatus] = useState('')
+    const { pollID } = useParams();
     let navigate = useNavigate();
 
     useEffect(() => {
+        // Check voted status in local storage
+        const voted = localStorage.getItem(`${pollID}`);
+        setVotedStatus(voted)
+        // Firebase Data
         const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollID}/question`)
+        const dbRef = ref(database, `${pollID}`)
         onValue(dbRef, (response) => {
-            setDataPoll(response.val())
+            console.log(response.val())
+            setDataPoll(response.val().question)
+            const answers = Object.keys(response.val().answer)
+            setAnswer1(answers[0])
+            setAnswer2(answers[1])
         })
+
+
     }, [pollID])
 
     const handleSubmit = (e) => {
@@ -23,16 +35,14 @@ function PollResponse() {
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}/answer`)
 
-        if (userSelection === "no" ) {
+        if (userSelection) {
             update(dbRef, {
-                no: increment(1)
-            });
-        } else if (userSelection === "yes") {
-            update(dbRef, {
-                yes: increment(1)
+                [userSelection]: increment(1)
             });
         }
-
+        // set Voted Staus to Local Storage
+        localStorage.setItem(`${pollID}`, 'voted');
+        // Navigate to results page
         navigate(`/poll/${pollID}/results`)
     }
 
@@ -41,17 +51,19 @@ function PollResponse() {
     }
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <legend>{dataPoll}</legend>
-                <label htmlFor='pollQuestion'>
-                    <input type="radio" id="pollQuestion" value="yes" name="pollQuestion" onChange={handleChange}
-                    />Yes
-                    <input type="radio" id="pollQuestion" value="no" name="pollQuestion" onChange={handleChange}
-                    />No
-                </label>
-                <button>Submit</button>
-                <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
-            </form>
+            {votedStatus !== 'voted' ?
+                <form onSubmit={handleSubmit}>
+                    <legend>{dataPoll}</legend>
+                    <label htmlFor='pollQuestion'>
+                        <input type="radio" id="pollQuestion" value={answer1} name="pollQuestion" onChange={handleChange}
+                        />{answer1}
+                        <input type="radio" id="pollQuestion" value={answer2} name="pollQuestion" onChange={handleChange}
+                        />{answer2}
+                    </label>
+                    <button>Submit</button>
+                </form>
+                :
+                <p>You've already voted!</p>}
         </>
     )
 }
