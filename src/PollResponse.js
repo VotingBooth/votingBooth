@@ -35,13 +35,9 @@ function PollResponse() {
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}/answer`)
 
-        if (userSelection === answer1 ) {
+        if (userSelection) {
             update(dbRef, {
-                [answer1]: increment(1)
-            });
-        } else if (userSelection === answer2) {
-            update(dbRef, {
-                [answer2]: increment(1)
+                [userSelection]: increment(1)
             });
         }
         // set Voted Staus to Local Storage
@@ -55,7 +51,6 @@ function PollResponse() {
     }
     return (
         <>
-            {votedStatus !== 'voted' ?
             <form onSubmit={handleSubmit}>
                 <legend>{dataPoll}</legend>
                 <label htmlFor='pollQuestion'>
@@ -66,8 +61,6 @@ function PollResponse() {
                 </label>
                 <button>Submit</button>
             </form>
-            :
-            <p>You have already voted!</p>}
         </>
     )
 }
