@@ -82,6 +82,7 @@ function PollCreate() {
                 <button>
                     <p>Submit Questions and Answers</p>
                 </button>
+                <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
             </form>
 
         </div>
