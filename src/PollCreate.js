@@ -27,6 +27,12 @@ function PollCreate() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // Error Handling to ensure unique answers
+        if (answer1 === answer2) {
+            alert('You need to enter unique answers')
+            return
+        }
+        // Firebase Database Initiatlization
         const database = getDatabase(firebase)
         const dbRef = ref(database)
         const newKey = push(dbRef).key;
