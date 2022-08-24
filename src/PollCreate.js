@@ -27,23 +27,26 @@ function PollCreate() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const filteredA1 = await filterProfanity(answer1)
-        const filteredA2 = await filterProfanity(answer2)
-        const filteredQ = await filterProfanity(question)
-        const database = getDatabase(firebase)
-        const dbRef = ref(database)
-        const newKey = push(dbRef).key;
-        const postData = {
-            question: filteredQ,
-            answer: {
-                [filteredA1]: 0,
-                [filteredA2]: 0
+        try {
+            const [filteredA1, filteredA2, filteredQ] = await Promise.all([filterProfanity(answer1), filterProfanity(answer2), filterProfanity(question)]);
+            const database = getDatabase(firebase)
+            const dbRef = ref(database)
+            const newKey = push(dbRef).key;
+            const postData = {
+                question: filteredQ,
+                answer: {
+                    [filteredA1]: 0,
+                    [filteredA2]: 0
+                }
             }
+            const updates = {};
+            updates[newKey + '/'] = postData
+            update(dbRef, updates);
+            navigate(`/poll/${newKey}`);
+
+        } catch (error) {
+            console.log(error)
         }
-        const updates = {};
-        updates[newKey + '/'] = postData
-        update(dbRef, updates);
-        navigate(`/poll/${newKey}`);
 
     }
 
