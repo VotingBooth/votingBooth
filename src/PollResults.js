@@ -13,14 +13,22 @@ function PollResults() {
     const [pollResults, setPollResults] = useState([])
     const [pollLabels, setPollLabels] = useState([])
     const { pollID } = useParams();
+    const [totalVotes, setTotalVotes] = useState("")
 
     useEffect(() => {
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}/answer`)
         onValue(dbRef, (response) => {
-            setPollResults(Object.values(response.val()))
-            setPollLabels(Object.keys(response.val()))
+            const totals = Object.values(response.val())
 
+            setPollResults(totals)
+            setPollLabels(Object.keys(response.val()))
+            
+            let sum = 0
+            for(let number of totals){
+                sum += number;
+                setTotalVotes(sum)
+            }
         })
     }, [pollID])
 
@@ -71,6 +79,7 @@ function PollResults() {
                 </div>
             </form>
             <div>
+                <h3>{totalVotes} person voted</h3>
                 <Chart
                     type={chartSelection}
                     options={options}
