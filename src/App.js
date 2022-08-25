@@ -11,36 +11,24 @@ import { AuthProvider } from './components/AuthContext';
 
 function App() {
   return (
-<<<<<<< HEAD
-    <div>
       <AuthProvider>
-
-        <Header />
-        <Routes>
-          <Route path='/' element={<PollCreate />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/saved' element={<SavedPolls />} />
-          <Route path='/poll/:pollID' element={<PollResponse />} />
-          <Route path='/poll/:pollID/results' element={<PollResults />} />
-
-        </Routes>
-        <Footer />
-      </AuthProvider>
-=======
-    <div className='wholePage'>
-      <Header />
-      <div className='wrapper contentSection'>
-        <div className='innerBox'>
-          <Routes>
-            <Route path='/' element={<PollCreate />} />
-            <Route path='/poll/:pollID' element={<PollResponse />} />
-            <Route path='/poll/:pollID/results' element={<PollResults />} />
-          </Routes>
+        <div className='wholePage'>
+          <Header />
+          <div className='wrapper contentSection'>
+            <div className='innerBox'>
+              <Routes>
+                <Route path='/' element={<PollCreate />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/saved' element={<SavedPolls />} />
+                <Route path='/poll/:pollID' element={<PollResponse />} />
+                <Route path='/poll/:pollID/results' element={<PollResults />} />
+              </Routes>
+            </div>
+          </div>
+          <Footer />
         </div>
-      </div>
-      <Footer />
->>>>>>> main
-    </div>
+      </AuthProvider>
+    
   );
 }
 export default App;
