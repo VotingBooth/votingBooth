@@ -1,9 +1,11 @@
 
-import { firebase } from './firebase';
+import { firebase } from '.././helpers/firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { filterProfanity } from './filterProfanity'
+import { filterProfanity } from '.././helpers/filterProfanity'
+import '.././styling/PollCreate.scss'
+
 
 
 function PollCreate() {
@@ -52,6 +54,7 @@ function PollCreate() {
     }
 
     return (
+<<<<<<< HEAD:src/PollCreate.js
         <>
         <div className="wrapper appInfo">
                 <h2>Welcome to your favorite Anonymous Voting Booth</h2>
@@ -74,6 +77,25 @@ function PollCreate() {
 
         </div>
         </>
+=======
+
+        <main className='wrapper'>
+            <div className='pollCreation'>
+                <h2>Create your Poll below</h2>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor='userInput'>Question</label>
+                    <input maxLength='140' type="text" id='userInput' onChange={handleChange} />
+                    <label htmlFor='answer1'>Option #1</label>
+                    <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} />
+                    <label htmlFor='answer2'>Option #2</label>
+                    <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} />
+                    <button>
+                        <p>Create Poll</p>
+                    </button>
+                </form>
+            </div>
+        </main>
+>>>>>>> main:src/components/PollCreate.js
     )
 }
 

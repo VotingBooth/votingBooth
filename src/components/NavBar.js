@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { UserAuth } from "./AuthContext";
+import '.././styling/NavBar.scss'
 
 
 const NavBar = () => {
@@ -13,9 +13,9 @@ const NavBar = () => {
     }
 
     return (
-        <>
-            <nav>
-                <Link to="/">Voting Booth</Link>            
+        <nav>
+            <div className="wrapper navContent">
+                <Link to="/" className="homeButton">Voting Booth</Link>
                 <ul>
                     <li>
                         { user?.displayName ? 
@@ -28,8 +28,8 @@ const NavBar = () => {
                         About
                     </li>
                 </ul>
-            </nav>
-        </>
+            </div>
+        </nav>
     )
 }
 
