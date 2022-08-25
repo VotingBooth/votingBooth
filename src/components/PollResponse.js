@@ -4,7 +4,6 @@ import { firebase } from '.././helpers/firebase'
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
 
-
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [answer1, setAnswer1] = useState('');
