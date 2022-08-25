@@ -69,23 +69,33 @@ function PollCreate() {
     }
 
     return (
-
-        <main className='wrapper'>
-            <div className='pollCreation'>
-                <h2>Create your Poll below</h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor='userInput'>Question</label>
-                    <input maxLength='140' type="text" id='userInput' onChange={handleChange} />
-                    <label htmlFor='answer1'>Option #1</label>
-                    <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} />
-                    <label htmlFor='answer2'>Option #2</label>
-                    <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} />
-                    <button>
-                        <p>Create Poll</p>
-                    </button>
-                </form>
-            </div>
-        </main>
+        <>
+            <header>
+                <div className="appInfo">
+                    <h2>Welcome to your favorite Anonymous Voting Booth</h2>
+                    <p>Enter your poll question below, along with options and we will create a shareable link.</p>
+                    <p>Reducing the stress of decision making, one poll at a time </p>
+                </div>
+            </header>
+            <main className='wrapper'>
+                <div className='pollCreation'>
+                    <h2>Create your Poll below</h2>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor='userInput' className='sr-only'>Question</label>
+                        <input maxLength='140' type="text" id='userInput' onChange={handleChange} placeholder='What would you like to ask?' className='question' />
+                        <div className='answers'>
+                            <label htmlFor='answer1' className='sr-only'>Option #1 - Required</label>
+                            <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} placeholder='Option 1 (Required)' />
+                            <label htmlFor='answer2' className='sr-only'>Option #2 - Required</label>
+                            <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} placeholder='Option 2 (Required)' />
+                        </div>
+                        <button>
+                            <p>Create Poll</p>
+                        </button>
+                    </form>
+                </div>
+            </main >
+        </>
     )
 }
 

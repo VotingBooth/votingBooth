@@ -1,5 +1,6 @@
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { useEffect, useState } from "react"
+import '.././styling/ShareButton.scss'
 
 function ShareButton({ shareTitle, shareURL }) {
 
@@ -12,9 +13,9 @@ function ShareButton({ shareTitle, shareURL }) {
     const [share, setShare] = useState([])
 
     // on page load get shareURL data, and pass into setShare state
-    useEffect(()=>{
+    useEffect(() => {
         setShare(shareURL)
-    },[shareURL])
+    }, [shareURL])
 
     const handleClick = async () => {
         try {
@@ -26,14 +27,15 @@ function ShareButton({ shareTitle, shareURL }) {
 
     }
     return (
-        navigator.canShare ? <button onClick={handleClick}>Share!</button> : 
-        // if page doesnt have navigator, show url
-        <div>
+        navigator.canShare ? <button onClick={handleClick} className='shareButton'>Share!</button> :
+            // if page doesnt have navigator, show url
             <CopyToClipboard text={share}>
-                <span>Copy Link to clipboard:{share}</span>
+                <div className="copyToClipBoardContainer">
+                    <input type='text' defaultValue={share} />
+                    <button>Copy</button>
+                </div>
             </CopyToClipboard>
 
-        </div>
     )
 
 

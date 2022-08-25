@@ -3,13 +3,14 @@
 nav {
 
     height: 10vh;
+
     background-color: $secondary;
 
     .navContent {
         display: flex;
         justify-content: space-between;
 
-        color: $tertiary;
+        color: $fourth;
 
         .homeButton {
             font-family: $headingFont;

@@ -1,13 +1,15 @@
 @import "../_variables.scss";
 
 .pollResponseForm {
-    border: 2px solid $primary;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    border: 2px solid $secondary;
     width: fit-content;
-    margin: 0 auto;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color: $offWhite;
 
     h2 {
         padding: 25px;
@@ -31,7 +33,7 @@
             border-radius: 0 0 0 15px;
 
             &:hover {
-                background-color: rgba($primary, 0.5);
+                background-color: rgba($primary, 0.7);
                 transition: 0.25s;
 
             }
