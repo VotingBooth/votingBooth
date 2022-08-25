@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { firebase } from './firebase'
+import { firebase } from '.././helpers/firebase'
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
-import './PollResponse.scss';
+import '.././styling/PollResponse.scss';
 
 
 function PollResponse() {

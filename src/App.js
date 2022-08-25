@@ -1,9 +1,9 @@
 import './App.scss';
-import Header from './Header'
-import Footer from './Footer'
-import PollCreate from './PollCreate'
-import PollResponse from './PollResponse'
-import PollResults from './PollResults'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import PollCreate from './components/PollCreate'
+import PollResponse from './components/PollResponse'
+import PollResults from './components/PollResults'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {

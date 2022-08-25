@@ -1,10 +1,10 @@
 
-import { firebase } from './firebase';
+import { firebase } from '.././helpers/firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { filterProfanity } from './filterProfanity'
-import './PollCreate.scss'
+import { filterProfanity } from '.././helpers/filterProfanity'
+import '.././styling/PollCreate.scss'
 
 
 
