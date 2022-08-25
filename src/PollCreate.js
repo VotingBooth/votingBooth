@@ -36,36 +36,19 @@ function PollCreate() {
         const database = getDatabase(firebase)
         const dbRef = ref(database)
         const newKey = push(dbRef).key;
-        try {
-            const [filteredA1, filteredA2, filteredQ] = await Promise.all([filterProfanity(answer1), filterProfanity(answer2), filterProfanity(question)]);
-            const postData = {
-                question: filteredQ,
-                answer: {
-                    [filteredA1]: 0,
-                    [filteredA2]: 0
-                }
+        const postData = {
+            question: question,
+            answer: {
+                [answer1]: 0,
+                [answer2]: 0
             }
-            const updates = {};
-            updates[newKey + '/'] = postData
-            update(dbRef, updates);
-            navigate(`/poll/${newKey}`);
-
-        } catch (error) {
-            console.log(error)
-            // if try fails, continue with database storage, with unfiltered questions
-            const postData = {
-                question: question,
-                answer: {
-                    [answer1]: 0,
-                    [answer2]: 0
-                }
-            }
-            const updates = {};
-            updates[newKey + '/'] = postData
-            update(dbRef, updates);
-            navigate(`/poll/${newKey}`);
         }
+        const updates = {};
+        updates[ newKey + '/'] = postData
+        update(dbRef, updates);
+        // console.log(answer1, answer2, 'this worked');
 
+        navigate(`/poll/${newKey}`);
     }
 
     return (
