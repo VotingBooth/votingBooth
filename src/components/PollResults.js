@@ -9,19 +9,28 @@ import ShareButton from './ShareButton'
 import '.././styling/PollResults.scss'
 
 
+
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
     const [pollResults, setPollResults] = useState([])
     const [pollLabels, setPollLabels] = useState([])
     const { pollID } = useParams();
+    const [totalVotes, setTotalVotes] = useState("")
 
     useEffect(() => {
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}/answer`)
         onValue(dbRef, (response) => {
-            setPollResults(Object.values(response.val()))
-            setPollLabels(Object.keys(response.val()))
+            const totals = Object.values(response.val())
 
+            setPollResults(totals)
+            setPollLabels(Object.keys(response.val()))
+            
+            let sum = 0
+            for(let number of totals){
+                sum += number;
+                setTotalVotes(sum)
+            }
         })
     }, [pollID])
 
@@ -70,6 +79,7 @@ function PollResults() {
                     <input type="radio" id="bar" name="bar" value="bar" onChange={handleChange} checked={chartSelection === 'bar'} />
                 </div>
             </form>
+            <h3>People Voted:{totalVotes}</h3>
             <div className='chartContainer'>
                 <Chart
                     type={chartSelection}

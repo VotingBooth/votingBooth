@@ -3,7 +3,6 @@ import { logout } from "../helpers/firebase";
 import { useContext } from "react";
 import { AuthContext} from './AuthContext';
 
-
 const NavBar = () => {
 
     const { currentUser } = useContext(AuthContext);

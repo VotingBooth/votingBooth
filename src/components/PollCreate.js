@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { filterProfanity } from '.././helpers/filterProfanity'
 import '.././styling/PollCreate.scss'
 
-
-
 function PollCreate() {
     const [question, setQuestion] = useState();
     const [answer1, setAnswer1] = useState('');
