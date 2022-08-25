@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { firebase } from './firebase'
 import { ref, onValue, getDatabase } from 'firebase/database'
 import ShareButton from './ShareButton'
+import './PollResults.scss'
 
 
 function PollResults() {
@@ -55,8 +56,7 @@ function PollResults() {
         setChartSelection(e.target.value)
     }
     return (
-        <>
-            <div>{pollID}</div>
+        <main className='wrapper'>
             <p>Results</p>
             <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
             <form>
@@ -70,14 +70,14 @@ function PollResults() {
                     <input type="radio" id="bar" name="bar" value="bar" onChange={handleChange} checked={chartSelection === 'bar'} />
                 </div>
             </form>
-            <div>
+            <div className='chartContainer'>
                 <Chart
                     type={chartSelection}
                     options={options}
                     data={data}
                 />
             </div>
-        </>
+        </main>
     )
 }
 
