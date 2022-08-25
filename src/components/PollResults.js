@@ -6,11 +6,8 @@ import { useState } from 'react'
 import { firebase } from '.././helpers/firebase'
 import { ref, onValue, getDatabase } from 'firebase/database'
 import ShareButton from './ShareButton'
-<<<<<<< HEAD:src/PollResults.js
-import './PollResults.scss'
-=======
 import '.././styling/PollResults.scss'
->>>>>>> 097b955a2c34c20461a3adabbc23b3334fba61ea:src/components/PollResults.js
+
 
 
 function PollResults() {

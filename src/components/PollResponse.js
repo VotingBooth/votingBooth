@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from '.././helpers/firebase'
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
-<<<<<<< HEAD:src/PollResponse.js
-import './PollResponse.scss';
-=======
 import '.././styling/PollResponse.scss';
->>>>>>> 097b955a2c34c20461a3adabbc23b3334fba61ea:src/components/PollResponse.js
-
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);

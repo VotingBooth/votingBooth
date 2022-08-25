@@ -1,9 +1,5 @@
 import NavBar from "./NavBar";
-<<<<<<< HEAD:src/Header.js
-import './Header.scss'
-=======
 import '.././styling/Header.scss'
->>>>>>> 097b955a2c34c20461a3adabbc23b3334fba61ea:src/components/Header.js
 
 function Header() {
     return (
