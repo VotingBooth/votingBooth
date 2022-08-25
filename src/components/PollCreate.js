@@ -10,8 +10,10 @@ function PollCreate() {
     const [question, setQuestion] = useState();
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
-    const navigate = useNavigate();
+    const [answer3, setAnswer3] = useState('');
+    const [answer4, setAnswer4] = useState('');
 
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setQuestion(e.target.value)
@@ -23,6 +25,14 @@ function PollCreate() {
 
     const handleAnswer2 = (e) => {
         setAnswer2(e.target.value)
+    }
+
+    const handleAnswer3 = (e) => {
+    setAnswer3(e.target.value)
+    }
+
+    const handleAnswer4 = (e) => {
+    setAnswer4(e.target.value)
     }
 
     const handleSubmit = async (e) => {
@@ -37,12 +47,14 @@ function PollCreate() {
         const dbRef = ref(database)
         const newKey = push(dbRef).key;
         try {
-            const [filteredA1, filteredA2, filteredQ] = await Promise.all([filterProfanity(answer1), filterProfanity(answer2), filterProfanity(question)]);
+            const [filteredA1, filteredA2, filteredA3, filteredA4, filteredQ] = await Promise.all([filterProfanity(answer1), filterProfanity(answer2), filterProfanity(answer3), filterProfanity(answer4), filterProfanity(question)]);
             const postData = {
                 question: filteredQ,
                 answer: {
                     [filteredA1]: 0,
-                    [filteredA2]: 0
+                    [filteredA2]: 0,
+                    [filteredA3]: 0,
+                    [filteredA4]: 0
                 }
             }
             const updates = {};
@@ -57,7 +69,9 @@ function PollCreate() {
                 question: question,
                 answer: {
                     [answer1]: 0,
-                    [answer2]: 0
+                    [answer2]: 0,
+                    [answer3]: 0,
+                    [answer4]: 0
                 }
             }
             const updates = {};
@@ -84,10 +98,14 @@ function PollCreate() {
                         <label htmlFor='userInput' className='sr-only'>Question</label>
                         <input maxLength='140' type="text" id='userInput' onChange={handleChange} placeholder='What would you like to ask?' className='question' />
                         <div className='answers'>
-                            <label htmlFor='answer1' className='sr-only'>Option #1 - Required</label>
-                            <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} placeholder='Option 1 (Required)' />
-                            <label htmlFor='answer2' className='sr-only'>Option #2 - Required</label>
-                            <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} placeholder='Option 2 (Required)' />
+                            <label htmlFor='answer1' className='sr-only'>Option #1</label>
+                            <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} placeholder='Required' />
+                            <label htmlFor='answer2' className='sr-only'>Option #2</label>
+                            <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} placeholder='Required' />
+                            <label htmlFor='answer3' className='sr-only'>Option #3</label>
+                            <input maxLength='140' type='text' id='answer3' onChange={handleAnswer3} placeholder='Optional' />
+                            <label htmlFor='answer4' className='sr-only'>Option #4</label>
+                            <input maxLength='140' type='text' id='answer4' onChange={handleAnswer4} placeholder='Optional' />
                         </div>
                         <button>
                             <p>Create Poll</p>

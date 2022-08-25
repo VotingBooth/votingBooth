@@ -8,6 +8,8 @@ function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
+    const [answer3, setAnswer3] = useState('');
+    const [answer4, setAnswer4] = useState('');
     const [votedStatus, setVotedStatus] = useState('')
     const { pollID } = useParams();
     let navigate = useNavigate();
@@ -25,6 +27,8 @@ function PollResponse() {
             const answers = Object.keys(response.val().answer)
             setAnswer1(answers[0])
             setAnswer2(answers[1])
+            setAnswer3(answers[2])
+            setAnswer4(answers[3])
         })
 
 
@@ -41,7 +45,7 @@ function PollResponse() {
             [userSelect]: increment(1)
         });
         // set Voted Staus to Local Storage
-        localStorage.setItem(`${pollID}`, 'voted');
+        // localStorage.setItem(`${pollID}`, 'voted');
         // Navigate to results page
         navigate(`/poll/${pollID}/results`)
     }
@@ -57,6 +61,12 @@ function PollResponse() {
                         />
                         <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
                         <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
+                        />
+                        <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
+                        <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} className='leftButton'
+                        />
+                        <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
+                        <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} className='rightButton'
                         />
                     </div>
                 </form>
