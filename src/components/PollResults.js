@@ -79,6 +79,7 @@ function PollResults() {
                     <input type="radio" id="bar" name="bar" value="bar" onChange={handleChange} checked={chartSelection === 'bar'} />
                 </div>
             </form>
+            <h3>People Voted:{totalVotes}</h3>
             <div className='chartContainer'>
                 <Chart
                     type={chartSelection}
