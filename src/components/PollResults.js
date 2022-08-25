@@ -3,10 +3,14 @@ import { useParams } from 'react-router-dom'
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { useState } from 'react'
-import { firebase } from './firebase'
+import { firebase } from '.././helpers/firebase'
 import { ref, onValue, getDatabase } from 'firebase/database'
 import ShareButton from './ShareButton'
+<<<<<<< HEAD:src/PollResults.js
 import './PollResults.scss'
+=======
+import '.././styling/PollResults.scss'
+>>>>>>> 097b955a2c34c20461a3adabbc23b3334fba61ea:src/components/PollResults.js
 
 
 function PollResults() {

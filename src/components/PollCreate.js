@@ -1,10 +1,15 @@
 
-import { firebase } from './firebase';
+import { firebase } from '.././helpers/firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD:src/PollCreate.js
 import { filterProfanity } from './filterProfanity'
 import './PollCreate.scss'
+=======
+import { filterProfanity } from '.././helpers/filterProfanity'
+import '.././styling/PollCreate.scss'
+>>>>>>> 097b955a2c34c20461a3adabbc23b3334fba61ea:src/components/PollCreate.js
 
 
 
