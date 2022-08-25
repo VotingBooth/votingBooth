@@ -11,6 +11,7 @@ import { AuthProvider } from './components/AuthContext';
 
 function App() {
   return (
+<<<<<<< HEAD
     <div>
       <AuthProvider>
 
@@ -25,6 +26,20 @@ function App() {
         </Routes>
         <Footer />
       </AuthProvider>
+=======
+    <div className='wholePage'>
+      <Header />
+      <div className='wrapper contentSection'>
+        <div className='innerBox'>
+          <Routes>
+            <Route path='/' element={<PollCreate />} />
+            <Route path='/poll/:pollID' element={<PollResponse />} />
+            <Route path='/poll/:pollID/results' element={<PollResults />} />
+          </Routes>
+        </div>
+      </div>
+      <Footer />
+>>>>>>> main
     </div>
   );
 }

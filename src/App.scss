@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .wrapper {
   max-width: 1260px;
   width: 80%;
@@ -9,6 +11,27 @@
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerBox {
+  background-color: $primary;
+  margin: 10vh auto;
+  width: 70%;
+  border: 2px solid $secondary;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0;
+  gap: 50px;
+}
+
+
+
+.contentSection {
   height: 75vh;
-  padding-top: 25px;
 }

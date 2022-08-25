@@ -1,12 +1,8 @@
 import NavBar from "./NavBar";
-import '.././styling/Header.scss'
 
 function Header() {
     return (
-        <>
-            <NavBar />
-            
-        </>
+        <NavBar />
     )
 }
 
