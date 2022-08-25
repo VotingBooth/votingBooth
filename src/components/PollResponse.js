@@ -62,12 +62,23 @@ function PollResponse() {
                         <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
                         <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
                         />
+                        {
+                        answer3 && answer3 !== "undefined" ? 
+                        <>
                         <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
                         <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} className='leftButton'
                         />
+                        </> : null
+                        }
+                        {
+                        answer4 && answer4 !== "undefined" ? 
+                        <>
                         <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
                         <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} className='rightButton'
                         />
+                        </> : null
+                        }
+                        
                     </div>
                 </form>
                 :
