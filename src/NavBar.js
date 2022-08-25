@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import './NavBar.scss'
 
 
 const NavBar = () => {
     return (
-        <>
-            <nav>
-                <Link to="/">Voting Booth</Link>            
+        <nav>
+            <div className="wrapper navContent">
+                <Link to="/" className="homeButton">Voting Booth</Link>
                 <ul>
                     <li>
                         Login
@@ -14,8 +15,8 @@ const NavBar = () => {
                         About
                     </li>
                 </ul>
-            </nav>
-        </>
+            </div>
+        </nav>
     )
 }
 

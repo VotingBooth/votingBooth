@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Header from './Header'
 import Footer from './Footer'
 import PollCreate from './PollCreate'
@@ -9,7 +9,7 @@ import { Routes, Route } from 'react-router-dom'
 function App() {
 
   return (
-    <div>
+    <div className='wholePage'>
       <Header />
       <Routes>
         <Route path='/' element={<PollCreate />} />

@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { firebase } from './firebase'
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
+import './PollResponse.scss';
+
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
-    const [userSelection, setUserSelection] = useState("")
     const [votedStatus, setVotedStatus] = useState('')
     const { pollID } = useParams();
     let navigate = useNavigate();
@@ -30,41 +31,41 @@ function PollResponse() {
 
     }, [pollID])
 
-    const handleSubmit = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
+        const userSelect = e.target.value
+
         const database = getDatabase(firebase)
         const dbRef = ref(database, `${pollID}/answer`)
 
-        if (userSelection) {
-            update(dbRef, {
-                [userSelection]: increment(1)
-            });
-        }
+        update(dbRef, {
+            [userSelect]: increment(1)
+        });
         // set Voted Staus to Local Storage
         localStorage.setItem(`${pollID}`, 'voted');
         // Navigate to results page
         navigate(`/poll/${pollID}/results`)
     }
 
-    const handleChange = (e) => {
-        setUserSelection(e.target.value)
-    }
     return (
-        <>
+        <main>
             {votedStatus !== 'voted' ?
-                <form onSubmit={handleSubmit}>
-                    <legend>{dataPoll}</legend>
-                    <label htmlFor='pollQuestion'>
-                        <input type="radio" id="pollQuestion" value={answer1} name="pollQuestion" onChange={handleChange}
-                        />{answer1}
-                        <input type="radio" id="pollQuestion" value={answer2} name="pollQuestion" onChange={handleChange}
-                        />{answer2}
-                    </label>
-                    <button>Submit</button>
+                <form className='pollResponseForm'>
+                    <h2>{dataPoll}</h2>
+                    <div className='pollResponses'>
+                        <label htmlFor='pollAnswer1' className='sr-only'>{answer1}</label>
+                        <input type="button" id="pollAnswer1" value={answer1} name="pollQuestion" onClick={handleClick}
+                        />
+                        <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
+                        <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
+                        />
+                    </div>
                 </form>
                 :
-                <p>You've already voted!</p>}
-        </>
+                <div className='wrapper'>
+                    <h2 className='previousVoted'>You've already voted!</h2>
+                </div>}
+        </main>
     )
 }
 
