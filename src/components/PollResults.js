@@ -57,7 +57,7 @@ function PollResults() {
     }
     return (
         <main className='wrapper'>
-            <p>Results</p>
+            <h2>Results</h2>
             <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
             <form>
                 <legend>Select a chart type:</legend>

@@ -11,11 +11,15 @@ function App() {
   return (
     <div className='wholePage'>
       <Header />
-      <Routes>
-        <Route path='/' element={<PollCreate />} />
-        <Route path='/poll/:pollID' element={<PollResponse />} />
-        <Route path='/poll/:pollID/results' element={<PollResults />} />
-      </Routes>
+      <div className='wrapper contentSection'>
+        <div className='innerBox'>
+          <Routes>
+            <Route path='/' element={<PollCreate />} />
+            <Route path='/poll/:pollID' element={<PollResponse />} />
+            <Route path='/poll/:pollID/results' element={<PollResults />} />
+          </Routes>
+        </div>
+      </div>
       <Footer />
     </div>
   );
