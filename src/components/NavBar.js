@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import '.././styling/NavBar.scss'
+import { logout } from "../helpers/firebase";
+import { useContext } from "react";
+import { AuthContext} from './AuthContext';
 
 
 const NavBar = () => {
-    const {user, logOut} = UserAuth();
+
+    const { currentUser } = useContext(AuthContext);
     const handleSignOut = async() => {
         try {
-            await logOut()
+            await logout()
         } catch (error) {
             console.log(error)
         }
@@ -18,9 +21,9 @@ const NavBar = () => {
                 <Link to="/" className="homeButton">Voting Booth</Link>
                 <ul>
                     <li>
-                        { user?.displayName ? 
-                        <button onClick={handleSignOut}>Logout</button>
-                        :
+                        { currentUser ?
+                        <button to="/" onClick={handleSignOut}>Logout</button>
+                        : 
                         <Link to="/login">Login</Link>
                         }
                     </li>

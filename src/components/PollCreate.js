@@ -1,5 +1,5 @@
 
-import { firebase } from '.././helpers/firebase';
+import  firebase from './../helpers/firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

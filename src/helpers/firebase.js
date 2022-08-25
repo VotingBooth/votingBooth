@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC91BM3u0TFtf3aM_9-abe4qlVrpqijuzo",
@@ -12,26 +12,36 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const firebase = initializeApp(firebaseConfig);
-export const auth = getAuth();
+const firebase = initializeApp(firebaseConfig);
+export const auth = getAuth(firebase);
 
 
-// signInWithPopup(auth, provider)
-//   .then((result) => {
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     // ...
-//   }).catch((error) => {
-//     // ...
-//   });
 
-//   export const signInAnon = async () => {
-//     try {
-//       await signInAnonymously(auth)
-//     } catch (err) {
-//       alert(err.message);
-//     }
-//   };
-  
-//   export const logout = () => {
-//     signOut(auth);
-//   };
+const googleProvider = new GoogleAuthProvider()
+export const signInWithGoogle = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+  } catch (err) {
+    if (err.code === "auth/popup-closed-by-user")
+      alert('Login has not been completed, Please click on login again');
+    if (err.code === "auth/popup-blocked")
+      alert('Please unblock Login popup to complete Login');
+    else
+      console.log(err);
+  }
+};
+
+
+export const signInAnon = async () => {
+  try {
+    await signInAnonymously(auth)
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+export const logout = () => {
+  signOut(auth);
+};
+
+export default firebase;
