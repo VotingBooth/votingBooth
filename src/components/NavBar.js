@@ -3,6 +3,7 @@ import '.././styling/NavBar.scss'
 
 const NavBar = () => {
     return (
+
         <nav>
             <div className="wrapper navContent">
                 <Link to="/" className="homeButton">Voting Booth</Link>
@@ -11,7 +12,7 @@ const NavBar = () => {
                         Login
                     </li>
                     <li>
-                        About
+                        <Link to="/about">About</Link>
                     </li>
                 </ul>
             </div>

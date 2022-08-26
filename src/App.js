@@ -5,6 +5,7 @@ import PollCreate from './components/PollCreate'
 import PollResponse from './components/PollResponse'
 import PollResults from './components/PollResults'
 import { Routes, Route } from 'react-router-dom'
+import AboutUs from './components/AboutUs'
 
 function App() {
 
@@ -17,10 +18,11 @@ function App() {
             <Route path='/' element={<PollCreate />} />
             <Route path='/poll/:pollID' element={<PollResponse />} />
             <Route path='/poll/:pollID/results' element={<PollResults />} />
+            <Route path='/about' element={<AboutUs />} />
           </Routes>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
