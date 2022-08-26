@@ -44,7 +44,7 @@ function PollCreate() {
         }
         // RegExp inspired by Stack Overflow
         if ((answer1.replace(/\s/g, '').length > 0) || (answer2.replace(/\s/g, '').length > 0) || (answer3.replace(/\s/g, '').length> 0) || (answer4.replace(/\s/g, '').length > 0)) {
-            alert('You cannot blank answers')
+            alert('Answers cannot be blank')
             return
         }
         
