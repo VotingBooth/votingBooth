@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { filterProfanity } from '.././helpers/filterProfanity'
 import '.././styling/PollCreate.scss'
+import { AuthContext } from './AuthContext';
+import { useContext } from 'react';
 
 function PollCreate() {
     const [question, setQuestion] = useState();
@@ -12,7 +14,10 @@ function PollCreate() {
     const [answer2, setAnswer2] = useState('');
     const [answer3, setAnswer3] = useState('');
     const [answer4, setAnswer4] = useState('');
+
     const navigate = useNavigate();
+    const { currentUser } = useContext(AuthContext)
+
 
     const handleChange = (e) => {
         setQuestion(e.target.value)
@@ -51,7 +56,14 @@ function PollCreate() {
 
         // Firebase Database Initiatlization
         const database = getDatabase(firebase)
-        const dbRef = ref(database, "anonymous")
+        let loggedInStatus
+        if (currentUser) {
+            loggedInStatus = `loggedIn/${[currentUser.uid]}`
+        }
+        else {
+            loggedInStatus = 'anonymous'
+        }
+        const dbRef = ref(database, loggedInStatus)
         const newKey = push(dbRef).key;
         try {
             const [filteredA1, filteredA2, filteredA3, filteredA4, filteredQ] = await Promise.all([filterProfanity(answer1), filterProfanity(answer2), filterProfanity(answer3), filterProfanity(answer4), filterProfanity(question)]);
@@ -67,7 +79,15 @@ function PollCreate() {
             const updates = {};
             updates[newKey + '/'] = postData
             update(dbRef, updates);
-            navigate(`/poll/${newKey}`);
+
+            let paramURL
+            if (currentUser) {
+                paramURL = `/poll/${[currentUser.uid]}/${newKey}`
+            }
+            else {
+                paramURL = `/poll/${newKey}`
+            }
+            navigate(paramURL);
 
         } catch (error) {
             console.log(error)
@@ -84,7 +104,14 @@ function PollCreate() {
             const updates = {};
             updates[newKey + '/'] = postData
             update(dbRef, updates);
-            navigate(`/poll/${newKey}`);
+            let paramURL
+            if (currentUser) {
+                paramURL = `/poll/${[currentUser.uid]}/${newKey}`
+            }
+            else {
+                paramURL = `/poll/${newKey}`
+            }
+            navigate(paramURL);
         }
 
     }

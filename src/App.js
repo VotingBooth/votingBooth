@@ -11,24 +11,26 @@ import { AuthProvider } from './components/AuthContext';
 
 function App() {
   return (
-      <AuthProvider>
-        <div className='wholePage'>
-          <Header />
-          <div className='wrapper contentSection'>
-            <div className='innerBox'>
-              <Routes>
-                <Route path='/' element={<PollCreate />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/saved' element={<SavedPolls />} />
-                <Route path='/poll/:pollID' element={<PollResponse />} />
-                <Route path='/poll/:pollID/results' element={<PollResults />} />
-              </Routes>
-            </div>
+    <AuthProvider>
+      <div className='wholePage'>
+        <Header />
+        <div className='wrapper contentSection'>
+          <div className='innerBox'>
+            <Routes>
+              <Route path='/' element={<PollCreate />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/saved' element={<SavedPolls />} />
+              <Route path='/poll/:pollID' element={<PollResponse />} />
+              <Route path='/poll/:uid/:pollID' element={<PollResponse />} />
+              <Route path='/poll/:pollID/results' element={<PollResults />} />
+              <Route path='/poll/:uid/:pollID/results' element={<PollResults />} />
+            </Routes>
           </div>
-          <Footer />
         </div>
-      </AuthProvider>
-    
+        <Footer />
+      </div>
+    </AuthProvider>
+
   );
 }
 export default App;
