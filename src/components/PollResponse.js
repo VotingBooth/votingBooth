@@ -3,12 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom'
 import  firebase from './../helpers/firebase';
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
+import { AuthContext } from './AuthContext';
+import { useContext } from 'react';
+import SaveForm from './SaveForm';
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
     const [votedStatus, setVotedStatus] = useState('')
+    const { currentUser } = useContext(AuthContext);
+    // const userID = currentUser.uid;
     const { pollID } = useParams();
     let navigate = useNavigate();
 
@@ -18,9 +23,8 @@ function PollResponse() {
         setVotedStatus(voted);
         // Firebase Data
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `${pollID}`);
+        const dbRef = ref(database, `anonymous/${pollID}`);
         onValue(dbRef, (response) => {
-            console.log(response.val());
             setDataPoll(response.val().question);
             const answers = Object.keys(response.val().answer);
             setAnswer1(answers[0]);
@@ -49,6 +53,7 @@ function PollResponse() {
     return (
         <main>
             {votedStatus !== 'voted' ?
+            <>
                 <form className='pollResponseForm'>
                     <h2>{dataPoll}</h2>
                     <div className='pollResponses'>
@@ -60,6 +65,8 @@ function PollResponse() {
                         />
                     </div>
                 </form>
+                <SaveForm/>
+                </>
                 :
                 <div className='wrapper'>
                     <h2 className='previousVoted'>You've already voted!</h2>
