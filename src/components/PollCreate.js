@@ -12,15 +12,8 @@ function PollCreate() {
     const [answer2, setAnswer2] = useState('');
     const [answer3, setAnswer3] = useState('');
     const [answer4, setAnswer4] = useState('');
-
-    const { currentUser } = useContext(AuthContext); 
-    const userID = currentUser.uid;
     const navigate = useNavigate();
-=======
-    const [answer3, setAnswer3] = useState('');
-    const [answer4, setAnswer4] = useState('');
->>>>>>> d8ead6bbb7029241a42c6bf4b63784396fe1b131
-
+  
     const handleChange = (e) => {
         setQuestion(e.target.value)
     }
