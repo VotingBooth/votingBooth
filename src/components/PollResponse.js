@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import  firebase from './../helpers/firebase';
+import firebase from './../helpers/firebase';
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
 import SaveForm from './SaveForm';
@@ -13,17 +13,33 @@ function PollResponse() {
     const [answer4, setAnswer4] = useState('');
     const [votedStatus, setVotedStatus] = useState('')
     const { pollID } = useParams();
+    const { uid } = useParams();
     let navigate = useNavigate();
+
+    let paramURL
+    if (uid) {
+        paramURL = `/poll/${uid}/${pollID}/results`
+    }
+    else {
+        paramURL = `/poll/${pollID}/results`
+    }
 
     useEffect(() => {
         // Check voted status in local storage
         const voted = localStorage.getItem(`${pollID}`);
         setVotedStatus(voted);
         // Firebase Data
+
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `anonymous/${pollID}`);
+        let loggedInPoll
+        if (uid) {
+            loggedInPoll = `loggedIn/${uid}/${pollID}`
+        }
+        else {
+            loggedInPoll = `anonymous/${pollID}`
+        }
+        const dbRef = ref(database, loggedInPoll)
         onValue(dbRef, (response) => {
-            console.log(response.val())
             setDataPoll(response.val().question)
             const answers = Object.keys(response.val().answer)
             setAnswer1(answers[0])
@@ -40,7 +56,14 @@ function PollResponse() {
         const userSelect = e.target.value
 
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `${pollID}/answer`);
+        let loggedInPoll
+        if (uid) {
+            loggedInPoll = `loggedIn/${uid}/${pollID}/answer`
+        }
+        else {
+            loggedInPoll = `anonymous/${pollID}/answer`
+        }
+        const dbRef = ref(database, loggedInPoll)
 
         update(dbRef, {
             [userSelect]: increment(1)
@@ -48,46 +71,53 @@ function PollResponse() {
         // set Voted Status to Local Storage
         localStorage.setItem(`${pollID}`, 'voted');
         // Navigate to results page
-        navigate(`/poll/${pollID}/results`)
+        navigate(paramURL);
+
+    }
+
+    const resultsClick = () => {
+        navigate(paramURL);
     }
 
     return (
         <main>
             {votedStatus !== 'voted' ?
-            <>
-                <form className='pollResponseForm'>
-                    <h2>{dataPoll}</h2>
-                    <div className='pollResponses'>
-                        <label htmlFor='pollAnswer1' className='sr-only'>{answer1}</label>
-                        <input type="button" id="pollAnswer1" value={answer1} name="pollQuestion" onClick={handleClick}
-                        />
-                        <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
-                        <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
-                        />
-                        {
-                        answer3 && answer3 !== "undefined" ? 
-                        <>
-                        <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
-                        <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} className='leftButton'
-                        />
-                        </> : null
-                        }
-                        {
-                        answer4 && answer4 !== "undefined" ? 
-                        <>
-                        <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
-                        <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} className='rightButton'
-                        />
-                        </> : null
-                        }
-                        
-                    </div>
-                </form>
-                <SaveForm/>
+                <>
+                    <form className='pollResponseForm'>
+                        <h2>{dataPoll}</h2>
+                        <div className='pollResponses'>
+                            <label htmlFor='pollAnswer1' className='sr-only'>{answer1}</label>
+                            <input type="button" id="pollAnswer1" value={answer1} name="pollQuestion" onClick={handleClick}
+                            />
+                            <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
+                            <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
+                            />
+                            {
+                                answer3 && answer3 !== "undefined" ?
+                                    <>
+                                        <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
+                                        <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} className='leftButton'
+                                        />
+                                    </> : null
+                            }
+                            {
+                                answer4 && answer4 !== "undefined" ?
+                                    <>
+                                        <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
+                                        <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} className='rightButton'
+                                        />
+                                    </> : null
+                            }
+
+                        </div>
+                    </form>
+                    <SaveForm />
+                    <button onClick={resultsClick}>Go to Results</button>
                 </>
                 :
                 <div className='wrapper'>
                     <h2 className='previousVoted'>You've already voted!</h2>
+                    <button onClick={resultsClick}>Go to Results</button>
                 </div>}
         </main>
     )

@@ -15,19 +15,29 @@ function PollResults() {
     const [pollResults, setPollResults] = useState([])
     const [pollLabels, setPollLabels] = useState([])
     const { pollID } = useParams();
+    const { uid } = useParams();
     const [totalVotes, setTotalVotes] = useState("")
 
     useEffect(() => {
-        const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollID}/answer`)
+
+        const database = getDatabase(firebase);
+        let loggedInPoll
+        if (uid) {
+            loggedInPoll = `loggedIn/${uid}/${pollID}/answer`
+        }
+        else {
+            loggedInPoll = `anonymous/${pollID}/answer`
+        }
+        const dbRef = ref(database, loggedInPoll)
+
         onValue(dbRef, (response) => {
             const totals = Object.values(response.val())
 
             setPollResults(totals)
             setPollLabels(Object.keys(response.val()))
-            
+
             let sum = 0
-            for(let number of totals){
+            for (let number of totals) {
                 sum += number;
                 setTotalVotes(sum)
             }
