@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import  firebase from './../helpers/firebase';
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
+import SaveForm from './SaveForm';
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
@@ -20,7 +21,7 @@ function PollResponse() {
         setVotedStatus(voted);
         // Firebase Data
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `${pollID}`);
+        const dbRef = ref(database, `anonymous/${pollID}`);
         onValue(dbRef, (response) => {
             console.log(response.val())
             setDataPoll(response.val().question)
@@ -53,6 +54,7 @@ function PollResponse() {
     return (
         <main>
             {votedStatus !== 'voted' ?
+            <>
                 <form className='pollResponseForm'>
                     <h2>{dataPoll}</h2>
                     <div className='pollResponses'>
@@ -81,6 +83,8 @@ function PollResponse() {
                         
                     </div>
                 </form>
+                <SaveForm/>
+                </>
                 :
                 <div className='wrapper'>
                     <h2 className='previousVoted'>You've already voted!</h2>

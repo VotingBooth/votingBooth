@@ -4,8 +4,6 @@ import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { filterProfanity } from '.././helpers/filterProfanity'
-import { AuthContext} from './AuthContext';
-import { useContext } from 'react';
 import '.././styling/PollCreate.scss'
 
 function PollCreate() {
@@ -14,15 +12,8 @@ function PollCreate() {
     const [answer2, setAnswer2] = useState('');
     const [answer3, setAnswer3] = useState('');
     const [answer4, setAnswer4] = useState('');
-
-    const { currentUser } = useContext(AuthContext); 
-    const userID = currentUser.uid;
     const navigate = useNavigate();
-=======
-    const [answer3, setAnswer3] = useState('');
-    const [answer4, setAnswer4] = useState('');
->>>>>>> d8ead6bbb7029241a42c6bf4b63784396fe1b131
-
+  
     const handleChange = (e) => {
         setQuestion(e.target.value)
     }
@@ -58,8 +49,8 @@ function PollCreate() {
         
         // Firebase Database Initiatlization
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
-        const newKey = push(dbRef, `${userID}`);
+        const dbRef = ref(database, "anonymous")
+        const newKey = push(dbRef).key;
         try {
             const [filteredA1, filteredA2, filteredA3, filteredA4, filteredQ] = await Promise.all([filterProfanity(answer1), filterProfanity(answer2), filterProfanity(answer3), filterProfanity(answer4), filterProfanity(question)]);
             const postData = {
