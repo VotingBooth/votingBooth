@@ -8,6 +8,8 @@ function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
+    const [answer3, setAnswer3] = useState('');
+    const [answer4, setAnswer4] = useState('');
     const [votedStatus, setVotedStatus] = useState('')
     const { pollID } = useParams();
     let navigate = useNavigate();
@@ -20,11 +22,13 @@ function PollResponse() {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `${pollID}`);
         onValue(dbRef, (response) => {
-            console.log(response.val());
-            setDataPoll(response.val().question);
-            const answers = Object.keys(response.val().answer);
-            setAnswer1(answers[0]);
-            setAnswer2(answers[1]);
+            console.log(response.val())
+            setDataPoll(response.val().question)
+            const answers = Object.keys(response.val().answer)
+            setAnswer1(answers[0])
+            setAnswer2(answers[1])
+            setAnswer3(answers[2])
+            setAnswer4(answers[3])
         })
 
 
@@ -58,6 +62,23 @@ function PollResponse() {
                         <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
                         <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
                         />
+                        {
+                        answer3 && answer3 !== "undefined" ? 
+                        <>
+                        <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
+                        <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} className='leftButton'
+                        />
+                        </> : null
+                        }
+                        {
+                        answer4 && answer4 !== "undefined" ? 
+                        <>
+                        <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
+                        <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} className='rightButton'
+                        />
+                        </> : null
+                        }
+                        
                     </div>
                 </form>
                 :
