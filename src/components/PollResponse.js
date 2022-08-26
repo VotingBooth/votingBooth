@@ -15,16 +15,16 @@ function PollResponse() {
     useEffect(() => {
         // Check voted status in local storage
         const voted = localStorage.getItem(`${pollID}`);
-        setVotedStatus(voted)
+        setVotedStatus(voted);
         // Firebase Data
-        const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollID}`)
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `${pollID}`);
         onValue(dbRef, (response) => {
-            console.log(response.val())
-            setDataPoll(response.val().question)
-            const answers = Object.keys(response.val().answer)
-            setAnswer1(answers[0])
-            setAnswer2(answers[1])
+            console.log(response.val());
+            setDataPoll(response.val().question);
+            const answers = Object.keys(response.val().answer);
+            setAnswer1(answers[0]);
+            setAnswer2(answers[1]);
         })
 
 
@@ -34,13 +34,13 @@ function PollResponse() {
         e.preventDefault();
         const userSelect = e.target.value
 
-        const database = getDatabase(firebase)
-        const dbRef = ref(database, `${pollID}/answer`)
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `${pollID}/answer`);
 
         update(dbRef, {
             [userSelect]: increment(1)
         });
-        // set Voted Staus to Local Storage
+        // set Voted Status to Local Storage
         localStorage.setItem(`${pollID}`, 'voted');
         // Navigate to results page
         navigate(`/poll/${pollID}/results`)
