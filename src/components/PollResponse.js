@@ -3,8 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import  firebase from './../helpers/firebase';
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
-import { AuthContext } from './AuthContext';
-import { useContext } from 'react';
 import SaveForm from './SaveForm';
 
 function PollResponse() {
@@ -12,8 +10,6 @@ function PollResponse() {
     const [answer1, setAnswer1] = useState('');
     const [answer2, setAnswer2] = useState('');
     const [votedStatus, setVotedStatus] = useState('')
-    const { currentUser } = useContext(AuthContext);
-    // const userID = currentUser.uid;
     const { pollID } = useParams();
     let navigate = useNavigate();
 
