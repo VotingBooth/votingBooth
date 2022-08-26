@@ -1,5 +1,5 @@
 
-import  firebase from './../helpers/firebase';
+import firebase from './../helpers/firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ function PollCreate() {
     const [answer3, setAnswer3] = useState('');
     const [answer4, setAnswer4] = useState('');
     const navigate = useNavigate();
-  
+
     const handleChange = (e) => {
         setQuestion(e.target.value)
     }
@@ -27,26 +27,28 @@ function PollCreate() {
     }
 
     const handleAnswer3 = (e) => {
-    setAnswer3(e.target.value)
+        setAnswer3(e.target.value)
     }
 
     const handleAnswer4 = (e) => {
-    setAnswer4(e.target.value)
+        setAnswer4(e.target.value)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Error Handling to ensure unique answers
-        if (answer1 === answer2 || answer1 === answer3 || answer1 === answer4 || answer2 === answer3 || answer2 === answer4 || (answer3 === answer4 && answer4 !== "") ) {
+        if (answer1 === answer2 || answer1 === answer3 || answer1 === answer4 || answer2 === answer3 || answer2 === answer4 || (answer3 === answer4 && answer4 !== "")) {
             alert('You need to enter unique answers')
             return
         }
+
         // RegExp inspired by Stack Overflow
-        if ((answer1.replace(/\s/g, '').length > 0) || (answer2.replace(/\s/g, '').length > 0) || (answer3.replace(/\s/g, '').length> 0) || (answer4.replace(/\s/g, '').length > 0)) {
+        if ((!answer1.replace(/\s/g, '').length && answer1 !== '') || (!answer2.replace(/\s/g, '').length && answer2 !== '') || (!answer3.replace(/\s/g, '').length && answer3 !== '') || (!answer4.replace(/\s/g, '').length && answer4 !== '')) {
             alert('Answers cannot be blank')
             return
         }
-        
+
+
         // Firebase Database Initiatlization
         const database = getDatabase(firebase)
         const dbRef = ref(database, "anonymous")
@@ -104,9 +106,9 @@ function PollCreate() {
                         <input maxLength='140' type="text" id='userInput' onChange={handleChange} placeholder='What would you like to ask?' className='question' required />
                         <div className='answers'>
                             <label htmlFor='answer1' className='sr-only'>Option #1</label>
-                            <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} placeholder='Required' required/>
+                            <input maxLength='140' type='text' id='answer1' onChange={handleAnswer1} placeholder='Required' required />
                             <label htmlFor='answer2' className='sr-only'>Option #2</label>
-                            <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} placeholder='Required' required/>
+                            <input maxLength='140' type='text' id='answer2' onChange={handleAnswer2} placeholder='Required' required />
                             <label htmlFor='answer3' className='sr-only'>Option #3</label>
                             <input maxLength='140' type='text' id='answer3' onChange={handleAnswer3} placeholder='Optional' />
                             <label htmlFor='answer4' className='sr-only'>Option #4</label>
