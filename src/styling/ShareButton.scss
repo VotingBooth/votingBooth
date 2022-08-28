@@ -1,10 +1,11 @@
-@import "../_mixins.scss";
-
-.shareButton {
-    @include customButton($secondary);
-}
+@import "../variables.scss";
+@import "../mixins.scss";
 
 .copyToClipBoardContainer {
     display: flex;
     flex-direction: row;
+    input {
+        cursor: text;
+    }
 }
+

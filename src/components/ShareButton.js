@@ -1,6 +1,6 @@
-import { CopyToClipboard } from "react-copy-to-clipboard"
-import { useEffect, useState } from "react"
-import '.././styling/ShareButton.scss'
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useEffect, useState } from "react";
+import '.././styling/ShareButton.scss';
 
 function ShareButton({ shareTitle, shareURL }) {
 
@@ -28,10 +28,10 @@ function ShareButton({ shareTitle, shareURL }) {
     }
     return (
         navigator.canShare ? <button onClick={handleClick} className='shareButton'>Share!</button> :
-            // if page doesnt have navigator, show url
+            // if page doesn't have navigator, show url
             <CopyToClipboard text={share}>
                 <div className="copyToClipBoardContainer">
-                    <input type='text' defaultValue={share} />
+                    <input type='text' defaultValue={share} disabled/>
                     <button>Copy</button>
                 </div>
             </CopyToClipboard>

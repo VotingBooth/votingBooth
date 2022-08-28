@@ -11,11 +11,11 @@ import { AuthProvider } from './components/AuthContext';
 
 function App() {
   return (
-    <AuthProvider>
+    <AuthProvider> 
       <div className='wholePage'>
         <Header />
-        <div className='wrapper contentSection'>
-          <div className='innerBox'>
+        <div className='wrapper'>
+          <div>
             <Routes>
               <Route path='/' element={<PollCreate />} />
               <Route path='/login' element={<Login />} />
