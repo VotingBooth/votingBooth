@@ -91,7 +91,7 @@ function PollResults() {
         <div className="pollResultsContainer">
             <header>
                     <div className="appInfo">
-                        <h2>The results for the most awaited poll's displayed here! Feel free to share the results with everyone</h2>
+                        <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share the results with everyone.</h2>
                         <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
                     </div>
                 </header>
@@ -123,4 +123,4 @@ function PollResults() {
     )
 }
 
-export default PollResults
+export default PollResults;

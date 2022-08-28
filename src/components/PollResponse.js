@@ -50,7 +50,7 @@ function PollResponse() {
         })
 
 
-    }, [pollID])
+    }, [pollID, uid])
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -82,12 +82,15 @@ function PollResponse() {
 
     return (
         <div className='pollRespContainer'>
-            <header>
-                <div className="appInfo">
-                    <h2>Time to vote and make the most important decision of your life! You can also share the poll or choose to see the results</h2>
-                    <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
-                </div>
-            </header>
+            {votedStatus !== 'voted' ?            
+                <header>
+                    <div className="appInfo">
+                        <h2>Time to vote and make the most important decision of your life! You can also share the poll or choose to see the results</h2>
+                        <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
+                    </div>
+                </header> :
+                null
+            }
             <main>
                 {votedStatus !== 'voted' ?
                     <>
@@ -98,13 +101,12 @@ function PollResponse() {
                                 <input type="button" id="pollAnswer1" value={answer1} name="pollQuestion" onClick={handleClick}
                                 />
                                 <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
-                                <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} className='rightButton'
-                                />
+                                <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} />
                                 {
                                     answer3 && answer3 !== "undefined" ?
                                         <>
                                             <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
-                                            <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} className='leftButton'
+                                            <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} 
                                             />
                                         </> : null
                                 }
@@ -112,7 +114,7 @@ function PollResponse() {
                                     answer4 && answer4 !== "undefined" ?
                                         <>
                                             <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
-                                            <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} className='rightButton'
+                                            <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} 
                                             />
                                         </> : null
                                 }
@@ -120,13 +122,19 @@ function PollResponse() {
                             </div>
                         </form>
                         <SaveForm />
-                        <button className='toGoResults' onClick={resultsClick}>Go to Results</button>
-                        <ShareButton shareTitle='Poll' shareURL={window.location.href} />
+                        <div className="buttons">
+                            <button className='toGoResults' onClick={resultsClick}>Go to Results</button>
+                            <ShareButton shareTitle='Poll' shareURL={window.location.href} />
+                        </div>
                     </>
                     :
                     <div className='wrapper'>
                         <h2 className='previousVoted'>You've already voted!</h2>
-                        <button className='toGoResults' onClick={resultsClick}>Go to Results</button>
+                        <div className="buttons">
+                            <button className='toGoResults' onClick={resultsClick}>Go to Results</button>
+                            <ShareButton shareTitle='Poll' shareURL={window.location.href} />
+                        </div>
+
                     </div>}
             </main>
         </div>

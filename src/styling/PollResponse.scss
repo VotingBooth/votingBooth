@@ -39,7 +39,6 @@
             justify-content: center;
             width: 70%;
             input {
-
                 border: none;
                 background-color: transparent;
                 border: 2px solid $tertiary;
@@ -60,8 +59,12 @@
     
     main {
         .toGoResults {
-        @include customButton($primary);
+            @include customButton($primary);
         }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        } 
     }
     .previousVoted {
         text-align: center

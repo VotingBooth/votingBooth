@@ -31,8 +31,9 @@ function ShareButton({ shareTitle, shareURL }) {
             // if page doesn't have navigator, show url
             <CopyToClipboard text={share}>
                 <div className="copyToClipBoardContainer">
-                    <input type='text' defaultValue={share} disabled/>
-                    <button>Copy</button>
+                    <label className="sr-only" htmlFor="shareButton">Link to Share Poll</label>
+                    <input type='text' id="shareButton" defaultValue={share} disabled/>
+                    <button className="shareButton">Copy Poll Link</button>
                 </div>
             </CopyToClipboard>
 
