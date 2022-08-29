@@ -1,24 +1,23 @@
-import '.././styling/Footer.scss'
+import '.././styling/Footer.scss';
+
 
 function Footer() {
     return (
         <footer>
-            <div className='wrapper footerContent'>
+            <div className='footerContent'>
                 <p>
-                    <a href="https://github.com/VotingBooth/votingBooth">Built at Juno</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/VotingBooth/votingBooth">Created at Juno</a>
                 </p>
                 <p>Collaborators -
-                    <a href="https://www.connorrobock.com/">Connor</a>
-                    ,
-                    <a href="https://kaitlynwcodes.ca/">Kaitlyn</a>
-                    ,
-                    <a href="https://portfolio.gourlay.me/">Nick</a>
-                    , and
-                    <a href="https://paridhishah.dev/">Paridhi</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.connorrobock.com/">Connor,</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://kaitlynwcodes.ca/">Kaitlyn,</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://portfolio.gourlay.me/">Nick,</a>
+                    and
+                    <a target="_blank" rel="noopener noreferrer" href="https://paridhishah.dev/">Paridhi</a>
                 </p>
             </div>
         </footer>
     )
 }
 
-export default Footer
+export default Footer;

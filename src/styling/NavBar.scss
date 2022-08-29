@@ -1,25 +1,32 @@
 @import "../_variables.scss";
 
 nav {
-
-    height: 10vh;
-
-    background-color: $secondary;
-
+    background-color: $primary;
+    padding: 0.5rem 1rem;
     .navContent {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        color: $offWhite;
 
-        color: $fourth;
-
-        .homeButton {
+        h1 {
             font-family: $headingFont;
             font-weight: bold;
+            text-transform: uppercase;
+            
         }
 
         ul {
             display: flex;
-            justify-content: space-evenly;
+            li {
+                a {
+                    padding: 1rem;
+                    transition: color 0.3s ease-in-out;
+                    &:hover, &:focus {
+                        color: $fifth;
+                    }
+                }
+            }
         }
     }
 }

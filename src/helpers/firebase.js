@@ -1,10 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getDatabase } from "firebase/database";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyC91BM3u0TFtf3aM_9-abe4qlVrpqijuzo",
     authDomain: "votingbooth-693ab.firebaseapp.com",
@@ -16,7 +12,36 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const firebase = initializeApp(firebaseConfig);
-// export default firebase
+const firebase = initializeApp(firebaseConfig);
+export const auth = getAuth(firebase);
 
-// export const database = getDatabase();
+
+
+const googleProvider = new GoogleAuthProvider()
+export const signInWithGoogle = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+  } catch (err) {
+    if (err.code === "auth/popup-closed-by-user")
+      alert('Login has not been completed, Please click on login again');
+    if (err.code === "auth/popup-blocked")
+      alert('Please unblock Login popup to complete Login');
+    else
+      console.log(err);
+  }
+};
+
+
+export const signInAnon = async () => {
+  try {
+    await signInAnonymously(auth)
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+export const logout = () => {
+  signOut(auth);
+};
+
+export default firebase;
