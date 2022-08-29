@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { AuthContext } from './AuthContext';
-import firebase from './../helpers/firebase'
+import firebase from './../helpers/firebase';
+import '.././styling/SavedPolls.scss'
+
 
 
 
@@ -38,20 +40,21 @@ const SavedPolls = () => {
             {savedPolls.length !== 0 ? savedPolls.map((poll) => (
                 <li key={poll.key}>
                     <p>{poll.question}</p>
-                    <button onClick={deletePoll}>Delete Poll</button>
-                    <button>
+                    <button className="button2">
                         <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
                             Go to Poll
                         </Link>
                     </button>
-                    <button>
+                    <button className="button3">
                         <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
                             Go to Results
                         </Link>
                     </button>
+                    <button className="button1" onClick={deletePoll}>Delete Poll</button>
                 </li>))
-                : <h2>Create Some Polls!</h2>}
-            <Link to="/">Create Polls</Link>
+                
+            
+                : <Link to="/">Create Some Polls</Link>}
         </>
     )
 }
