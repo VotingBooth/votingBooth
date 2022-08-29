@@ -9,11 +9,6 @@ import ShareButton from './ShareButton';
 import '.././styling/PollResults.scss';
 import { Helmet } from 'react-helmet'; 
 
-
-
-
-
-
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
     const [pollResults, setPollResults] = useState([])
@@ -92,9 +87,9 @@ function PollResults() {
     }
     return (
         <div className="pollResultsContainer">
-            {/* <Helmet>
-                <title>Voting Booth - {pollLabels}</title>
-            </Helmet> */}
+            <Helmet>
+                <title>Results - {pollTitle}</title>
+            </Helmet>
             <header>
                 <div className="appInfo">
                     <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share the results with everyone.</h2>

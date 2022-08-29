@@ -1,9 +1,14 @@
 import { FaGithubSquare, FaLinkedin, FaFolderOpen } from 'react-icons/fa';
-import '.././styling/AboutUs.scss'
+import '.././styling/AboutUs.scss';
+import { Helmet } from 'react-helmet'; 
+
 
 function AboutUs () {
     return (
         <section className="aboutUs">
+            <Helmet>
+                <title>About the Creators</title>
+            </Helmet>
             <div className="wrapper flexContainer">
                 <div className="imgContainer">
                     <img src="http://placekitten.com/300/300" alt="headshot of creators"/>
