@@ -18,6 +18,7 @@ function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
     const [pollResults, setPollResults] = useState([])
     const [pollLabels, setPollLabels] = useState([])
+    const [pollTitle, setPollTitle] = useState('')
     const { pollID } = useParams();
     const { uid } = useParams();
     const [totalVotes, setTotalVotes] = useState("")
@@ -27,18 +28,18 @@ function PollResults() {
         const database = getDatabase(firebase);
         let loggedInPoll
         if (uid) {
-            loggedInPoll = `loggedIn/${uid}/${pollID}/answer`
+            loggedInPoll = `loggedIn/${uid}/${pollID}/`
         }
         else {
-            loggedInPoll = `anonymous/${pollID}/answer`
+            loggedInPoll = `anonymous/${pollID}/`
         }
         const dbRef = ref(database, loggedInPoll)
 
         onValue(dbRef, (response) => {
-            const totals = Object.values(response.val())
-
-            setPollResults(totals)
-            setPollLabels(Object.keys(response.val()))
+            const totals = Object.values(response.val().answer)
+            setPollTitle(response.val().question)
+            setPollResults(Object.values(response.val().answer))
+            setPollLabels(Object.keys(response.val().answer))
 
             let sum = 0
             for (let number of totals) {
@@ -58,7 +59,7 @@ function PollResults() {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart.js Horizontal Bar Chart',
+                text: pollTitle,
             },
         },
     };
@@ -74,7 +75,7 @@ function PollResults() {
                     "rgb(53,80,112)",
                 ],
                 backgroundColor: [
-                    
+
                     "rgb(229, 107, 111)",
                     "rgb(181,101,118)",
                     "rgb(109,89,122)",
@@ -95,11 +96,11 @@ function PollResults() {
                 <title>Voting Booth - {pollLabels}</title>
             </Helmet> */}
             <header>
-                    <div className="appInfo">
-                        <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share the results with everyone.</h2>
-                        <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
-                    </div>
-                </header>
+                <div className="appInfo">
+                    <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share the results with everyone.</h2>
+                    <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
+                </div>
+            </header>
             <main className='wrapper'>
                 <form>
                     <legend>Select a chart type:</legend>
@@ -119,7 +120,7 @@ function PollResults() {
                         type={chartSelection}
                         options={options}
                         data={data}
-                        />
+                    />
                     <h3>Total Votes: {totalVotes}</h3>
                 </div>
                 <ShareButton shareTitle='Poll Results' shareURL={window.location.href} />
