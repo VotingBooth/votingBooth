@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import { AuthProvider } from './components/AuthContext';
 import AboutUs from './components/AboutUs'
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path='/poll/:pollID/results' element={<PollResults />} />
               <Route path='/poll/:uid/:pollID/results' element={<PollResults />} />
               <Route path='/about' element={<AboutUs />} />
+              <Route path='*' element={<ErrorPage />} />
             </Routes>
           </div>
         </div>
