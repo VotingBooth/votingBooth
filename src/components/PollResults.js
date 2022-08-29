@@ -37,7 +37,7 @@ function PollResults() {
             const totals = Object.values(response.val().answer)
             setPollTitle(response.val().question)
             setPollResults(Object.values(response.val().answer))
-            setPollLabels(Object.keys(response.val().answer))
+            setPollLabels(Object.keys(response.val().answer).filter(key => key !== 'undefined'))
 
             let sum = 0
             for (let number of totals) {
