@@ -75,6 +75,7 @@ function PollCreate() {
                     [filteredA4]: 0
                 }
             }
+
             const updates = {};
             updates[newKey + '/'] = postData
             update(dbRef, updates);
