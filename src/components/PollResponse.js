@@ -5,6 +5,7 @@ import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
 import SaveForm from './SaveForm';
 import ShareButton from './ShareButton';
+import { Helmet } from 'react-helmet'; 
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
@@ -82,6 +83,9 @@ function PollResponse() {
 
     return (
         <div className='pollRespContainer'>
+            <Helmet>
+                <title>{dataPoll}</title>
+            </Helmet>
             {votedStatus !== 'voted' ?
                 <header>
                     <div className="appInfo">
