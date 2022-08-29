@@ -49,7 +49,7 @@ function PollResponse() {
         })
 
 
-    }, [pollID])
+    }, [pollID, uid])
 
     const handleClick = (e) => {
         e.preventDefault();
