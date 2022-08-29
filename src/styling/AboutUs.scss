@@ -1,0 +1,21 @@
+@import "../_variables.scss";
+
+// AboutUs Component Styling
+.aboutUs img {
+    border-radius: 50%;
+}
+
+.imgContainer {
+    width: 50%;
+}
+
+
+.flexContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.socialContainer {
+    display: flex;
+    justify-content: center;
+}

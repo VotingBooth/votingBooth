@@ -17,6 +17,7 @@ const NavBar = () => {
     }
 
     return (
+
         <nav>
             <div className="navContent">
                 <h1>

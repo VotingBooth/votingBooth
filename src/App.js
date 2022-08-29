@@ -8,10 +8,11 @@ import SavedPolls from './components/SavedPolls';
 import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import { AuthProvider } from './components/AuthContext';
+import AboutUs from './components/AboutUs'
 
 function App() {
   return (
-    <AuthProvider> 
+ <AuthProvider> 
       <div className='wholePage'>
         <Header />
         <div className='wrapper'>
@@ -24,13 +25,13 @@ function App() {
               <Route path='/poll/:uid/:pollID' element={<PollResponse />} />
               <Route path='/poll/:pollID/results' element={<PollResults />} />
               <Route path='/poll/:uid/:pollID/results' element={<PollResults />} />
+              <Route path='/about' element={<AboutUs />} />
             </Routes>
           </div>
         </div>
         <Footer />
       </div>
     </AuthProvider>
-
   );
 }
 export default App;
