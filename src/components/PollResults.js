@@ -42,7 +42,7 @@ function PollResults() {
                 setTotalVotes(sum)
             }
         })
-    }, [pollID])
+    }, [pollID, uid])
 
     const options = {
         elements: {
