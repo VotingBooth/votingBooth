@@ -82,7 +82,7 @@ function PollResponse() {
 
     return (
         <div className='pollRespContainer'>
-            {votedStatus !== 'voted' ?            
+            {votedStatus !== 'voted' ?
                 <header>
                     <div className="appInfo">
                         <h2>Time to vote and make the most important decision of your life! You can also share the poll or choose to see the results</h2>
@@ -106,7 +106,7 @@ function PollResponse() {
                                     answer3 && answer3 !== "undefined" ?
                                         <>
                                             <label htmlFor='pollAnswer3' className='sr-only'>{answer3}</label>
-                                            <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick} 
+                                            <input type="button" id="pollAnswer3" value={answer3} name="pollQuestion" onClick={handleClick}
                                             />
                                         </> : null
                                 }
@@ -114,7 +114,7 @@ function PollResponse() {
                                     answer4 && answer4 !== "undefined" ?
                                         <>
                                             <label htmlFor='pollAnswer4' className='sr-only'>{answer4}</label>
-                                            <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick} 
+                                            <input type="button" id="pollAnswer4" value={answer4} name="pollQuestion" onClick={handleClick}
                                             />
                                         </> : null
                                 }
