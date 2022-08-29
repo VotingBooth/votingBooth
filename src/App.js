@@ -13,7 +13,6 @@ import AboutUs from './components/AboutUs'
 function App() {
   return (
  <AuthProvider> 
-      <div className='wholePage'>
         <Header />
         <div className='wrapper'>
           <div>
@@ -30,7 +29,6 @@ function App() {
           </div>
         </div>
         <Footer />
-      </div>
     </AuthProvider>
   );
 }
