@@ -8,13 +8,13 @@ function AboutUs () {
                 <div className="imgContainer">
                     <img src="http://placekitten.com/300/300" alt="headshot of creators"/>
                     <div className="socialContainer">
-                        <a target="_blank" href="https://github.com/ConnorRobock">
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/ConnorRobock" >
                             <FaGithubSquare />
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/connor-robock-00671968/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/connor-robock-00671968/">
                             <FaLinkedin />
                         </a>
-                        <a target="_blank" href="https://kaitlynwcodes.ca/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://kaitlynwcodes.ca/">
                             <FaFolderOpen />
                         </a>
                     </div>
@@ -22,13 +22,13 @@ function AboutUs () {
                 <div className="imgContainer">
                     <img src="http://placekitten.com/300/300" alt="headshot of creators"/>
                     <div className="socialContainer">
-                        <a target="_blank" href="https://github.com/kaitlynw88">
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/kaitlynw88">
                             <FaGithubSquare />
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/kaitlyn-wickson-8a346766/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/kaitlyn-wickson-8a346766/">
                             <FaLinkedin />
                         </a>
-                        <a target="_blank" href="https://kaitlynwcodes.ca/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://kaitlynwcodes.ca/">
                             <FaFolderOpen />
                         </a>
                     </div>
@@ -36,13 +36,13 @@ function AboutUs () {
                 <div className="imgContainer">
                     <img src="http://placekitten.com/300/300" alt="headshot of creators"/>
                     <div className="socialContainer">
-                        <a target="_blank" href="https://github.com/NicholG90">
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/NicholG90">
                             <FaGithubSquare />
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/connor-robock-00671968/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/connor-robock-00671968/">
                             <FaLinkedin />
                         </a>
-                        <a target="_blank" href="https://portfolio.gourlay.me/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://portfolio.gourlay.me/">
                             <FaFolderOpen />
                         </a>
                     </div>
@@ -50,13 +50,13 @@ function AboutUs () {
                 <div className="imgContainer">
                     <img src="http://placekitten.com/300/300" alt="headshot of creators"/>
                     <div className="socialContainer">
-                        <a target="_blank" href="https://github.com/ConnorRobock">
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/ConnorRobock">
                             <FaGithubSquare />
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/connor-robock-00671968/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/connor-robock-00671968/">
                             <FaLinkedin />
                         </a>
-                        <a target="_blank" href="https://www.connorrobock.com/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.connorrobock.com/">
                             <FaFolderOpen />
                         </a>
                     </div>
