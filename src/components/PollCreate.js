@@ -1,4 +1,3 @@
-
 import firebase from './../helpers/firebase';
 import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
@@ -117,17 +116,16 @@ function PollCreate() {
     }
 
     return (
-        <>
+        <div className='pollCreateContainer'>
             <header>
                 <div className="appInfo">
-                    <h2>Welcome to your favorite Anonymous Voting Booth</h2>
-                    <p>Enter your poll question below, along with options and we will create a shareable link.</p>
-                    <p>Reducing the stress of decision making, one poll at a time </p>
+                    <h2>Enter your poll question below along with options and we will create a link you can share with everyone to see everyone's preferences</h2>
+                    <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
                 </div>
             </header>
             <main className='wrapper'>
-                <div className='pollCreation'>
-                    <h2>Create your Poll below</h2>
+                <div className='pollCreateForm'>
+                    {/* <h2>Create your Poll below:</h2> */}
                     <form onSubmit={handleSubmit}>
                         <label htmlFor='userInput' className='sr-only'>Question</label>
                         <input maxLength='140' type="text" id='userInput' onChange={handleChange} placeholder='What would you like to ask?' className='question' required />
@@ -147,7 +145,7 @@ function PollCreate() {
                     </form>
                 </div>
             </main >
-        </>
+        </div>
     )
 }
 
