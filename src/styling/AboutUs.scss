@@ -1,14 +1,21 @@
 @import "../_variables.scss";
 
 // AboutUs Component Styling
-.aboutUS {
-    background-color: red;
+.aboutUs img {
+    border-radius: 50%;
 }
+
+.imgContainer {
+    width: 50%;
+}
+
 
 .flexContainer {
     display: flex;
+    flex-wrap: wrap;
 }
+
 .socialContainer {
-        display: flex;
-        justify-content: center;
-    }
+    display: flex;
+    justify-content: center;
+}

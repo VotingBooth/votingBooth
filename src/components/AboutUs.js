@@ -1,4 +1,5 @@
 import { FaGithubSquare, FaLinkedin, FaFolderOpen } from 'react-icons/fa';
+import '.././styling/AboutUs.scss'
 
 function AboutUs () {
     return (
