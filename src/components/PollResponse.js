@@ -5,6 +5,7 @@ import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
 import SaveForm from './SaveForm';
 import ShareButton from './ShareButton';
+import LoadingScreen from "./LoadingScreen"
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);
@@ -26,31 +27,33 @@ function PollResponse() {
     }
 
     useEffect(() => {
-        // Check voted status in local storage
-        const voted = localStorage.getItem(`${pollID}`);
-        setVotedStatus(voted);
-        // Firebase Data
-
-        const database = getDatabase(firebase);
-        let loggedInPoll
-        if (uid) {
-            loggedInPoll = `loggedIn/${uid}/${pollID}`
+        if(dataPoll){
+            // Check voted status in local storage
+            const voted = localStorage.getItem(`${pollID}`);
+            setVotedStatus(voted);
+            // Firebase Data
+    
+            const database = getDatabase(firebase);
+            let loggedInPoll
+            if (uid) {
+                loggedInPoll = `loggedIn/${uid}/${pollID}`
+            }
+            else {
+                loggedInPoll = `anonymous/${pollID}`
+            }
+            const dbRef = ref(database, loggedInPoll)
+            onValue(dbRef, (response) => {
+                setDataPoll(response.val().question)
+                const answers = Object.keys(response.val().answer)
+                setAnswer1(answers[0])
+                setAnswer2(answers[1])
+                setAnswer3(answers[2])
+                setAnswer4(answers[3])
+            })
+        }else{
+            <LoadingScreen />
         }
-        else {
-            loggedInPoll = `anonymous/${pollID}`
-        }
-        const dbRef = ref(database, loggedInPoll)
-        onValue(dbRef, (response) => {
-            setDataPoll(response.val().question)
-            const answers = Object.keys(response.val().answer)
-            setAnswer1(answers[0])
-            setAnswer2(answers[1])
-            setAnswer3(answers[2])
-            setAnswer4(answers[3])
-        })
-
-
-    }, [pollID, uid])
+    }, [pollID, dataPoll, uid])
 
     const handleClick = (e) => {
         e.preventDefault();
