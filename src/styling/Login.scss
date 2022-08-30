@@ -1,0 +1,79 @@
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
+// Login Page styling
+
+.loginContainer {
+    background-color: $secondary;
+    border-radius: 25px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0 25px 0;
+    width: 80%;
+        p {
+            text-align: center;
+            color: $offWhite;
+            padding: 15px;
+        }
+}
+
+.signInContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.loginTitle {
+    text-align: center;
+    font-family: $headingFont;
+    font-size: 2rem;
+    color: $offWhite;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 0 0 25px 0;
+    width: 100%;
+}
+
+button {
+    @include customButton($offWhite, $primary, $fourth);
+    margin: 10px 0 10px 0;
+}
+
+.buttonText {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.loginButton {
+    width: 300px;
+}
+
+.anonSignIn {
+    @include customButton($offWhite, $fourth, $primary);
+    margin: 10px 0 10px 0;
+}
+
+@media(max-width: 800px) {
+    .loginButton {
+        width: 250px;
+    }
+}
+
+@media(max-width: 425px) {
+    .loginButton {
+        width: 240px;
+    }
+}
+
+@media(max-width: 550px) {
+    .loginContainer {
+        width: 100%;
+    }
+}
+
+
+
