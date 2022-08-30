@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
-import { useState } from 'react'
-import firebase from './../helpers/firebase'
-import { ref, onValue, getDatabase } from 'firebase/database'
-import ShareButton from './ShareButton'
-import '.././styling/PollResults.scss'
-
-
-
-
+import { useState } from 'react';
+import firebase from './../helpers/firebase';
+import { ref, onValue, getDatabase } from 'firebase/database';
+import ShareButton from './ShareButton';
+import '.././styling/PollResults.scss';
+import { Helmet } from 'react-helmet'; 
 
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
@@ -37,7 +34,7 @@ function PollResults() {
             const totals = Object.values(response.val().answer)
             setPollTitle(response.val().question)
             setPollResults(Object.values(response.val().answer))
-            setPollLabels(Object.keys(response.val().answer))
+            setPollLabels(Object.keys(response.val().answer).filter(key => key !== 'undefined'))
 
             let sum = 0
             for (let number of totals) {
@@ -90,6 +87,9 @@ function PollResults() {
     }
     return (
         <div className="pollResultsContainer">
+            <Helmet>
+                <title>Results - {pollTitle}</title>
+            </Helmet>
             <header>
                 <div className="appInfo">
                     <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share the results with everyone.</h2>

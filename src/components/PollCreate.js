@@ -52,7 +52,6 @@ function PollCreate() {
             return
         }
 
-
         // Firebase Database Initiatlization
         const database = getDatabase(firebase)
         let loggedInStatus
@@ -75,7 +74,6 @@ function PollCreate() {
                     [filteredA4]: 0
                 }
             }
-
             const updates = {};
             updates[newKey + '/'] = postData
             update(dbRef, updates);
