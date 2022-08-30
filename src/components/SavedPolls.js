@@ -31,30 +31,40 @@ const SavedPolls = () => {
         const dbRef = ref(database, `loggedIn/${currentUser.uid}/${e.target.parentNode.id}`)
         remove(dbRef)
     }
-
     return (
         <>
             <Helmet>
                 <title>Your Saved Polls</title>
             </Helmet>
-            <h2>These are your saved polls!</h2>
-            {savedPolls.length !== 0 ? savedPolls.map((poll) => (
-                <li key={poll.key}>
-                    <p>{poll.question}</p>
-                    <button onClick={deletePoll}>Delete Poll</button>
-                    <button>
-                        <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
-                            Go to Poll
-                        </Link>
-                    </button>
-                    <button>
-                        <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
-                            Go to Results
-                        </Link>
-                    </button>
-                </li>))
-                : <h2>Create Some Polls!</h2>}
-            <Link to="/">Create Polls</Link>
+
+            
+            { savedPolls.length !== 0 ? 
+                <>
+                <h2>These are your saved polls!</h2>
+                <ul>
+                    {savedPolls.map((poll) => (
+                        <li key={poll.key}>
+                            <p>{poll.question}</p>
+                            <button onClick={deletePoll}>Delete Poll</button>
+                            <button>
+                                <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
+                                    Go to Poll
+                                </Link>
+                            </button>
+                            <button>
+                                <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
+                                    Go to Results
+                                </Link>
+                            </button>
+                        </li>))}
+                </ul>
+                <Link to="/">Create More Polls</Link>
+                </>
+                :     
+                    !currentUser ? 
+                    <Link to="/login">Login to Create Polls</Link>
+                    : <Link to="/">Create Polls</Link>                    
+            } 
         </>
     )
 }
