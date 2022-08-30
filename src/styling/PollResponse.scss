@@ -8,6 +8,7 @@
     border: $secondary solid 3px;
     border-radius: 15px;
     padding: 0 0 1rem 1rem;
+
     .appInfo {
         display: flex;
         flex-direction: column;
@@ -15,10 +16,12 @@
         text-align: center;
         padding: 0 1rem;
         color: $offWhite;
+
         .tagline {
-            padding: 0.5rem 0 ;
+            padding: 0.5rem 0;
         }
     }
+
     .pollResponseForm {
         margin: 2rem auto 1rem;
         display: flex;
@@ -41,6 +44,7 @@
             }
             padding: 0.5rem 0;
         }
+
         .pollResponses {
             display: flex;
             flex-direction: column;
@@ -68,16 +72,18 @@
                 &:hover {
                     background-color: $primary;
                     color: $offWhite
-    
                 }
             }
         }
     }
-    
+
     main {
         .toGoResults {
-            @include customButton($primary);
+            @include customButton($offWhite,
+                $primary,
+                $fourth);
         }
+
         .buttons {
             display: flex;
             justify-content: space-between;
@@ -92,6 +98,7 @@
             }
         } 
     }
+
     .previousVoted {
         text-align: center
     }

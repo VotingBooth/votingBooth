@@ -2,11 +2,12 @@
 @import "../_mixins.scss";
 
 
-.pollCreateContainer{
+.pollCreateContainer {
     background-color: $secondary;
     margin: 2rem auto;
     border: $secondary solid 3px;
     border-radius: 15px;
+
     .appInfo {
         display: flex;
         flex-direction: column;
@@ -14,10 +15,12 @@
         text-align: center;
         padding: 0 1rem;
         color: $offWhite;
+
         .tagline {
-            padding: 0.5rem 0 ;
+            padding: 0.5rem 0;
         }
     }
+
     .pollCreateForm {
         margin: 1rem 0;
         display: flex;
@@ -46,7 +49,7 @@
                 border: 2px solid $secondary;
 
                 &:focus {
-                    outline: 2px $primary solid; 
+                    outline: 2px $primary solid;
                 }
             }
 
@@ -77,7 +80,7 @@
             }
 
             button {
-                @include customButton($primary);
+                @include customButton($offWhite, $primary, $fourth);
             }
         }
     }
