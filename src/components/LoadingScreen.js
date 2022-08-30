@@ -1,3 +1,4 @@
+// LoadingScreen component is an animated SVG converted at https://react-svgr.com/playground/
 const LoadingScreen = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"

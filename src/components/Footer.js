@@ -1,6 +1,6 @@
 import '.././styling/Footer.scss';
 
-
+// Basic Footer Component used to frame page for styling and to share developers information
 function Footer() {
     return (
         <footer>
