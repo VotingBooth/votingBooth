@@ -29,8 +29,16 @@
         border-radius: 15px;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
         background-color: $offWhite;
-    
+        @media (max-width: 950px) {
+            width: 80%;
+        }
+        @media (max-width: 550px) {
+            width: 95%;
+        }
         h2 {
+            @media (max-width: 550px) {
+                font-size: 1.2rem;
+            }
             padding: 0.5rem 0;
         }
         .pollResponses {
@@ -38,6 +46,12 @@
             flex-direction: column;
             justify-content: center;
             width: 70%;
+            @media (max-width: 950px) {
+                width: 80%;
+            }
+            @media (max-width: 550px) {
+                width: 95%;
+            }
             input {
                 border: none;
                 background-color: transparent;
@@ -47,6 +61,9 @@
                 padding: 0.5rem;
                 cursor: pointer;
                 transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+                @media (max-width: 550px) {
+                    font-size: 1rem;
+                }
     
                 &:hover {
                     background-color: $primary;
@@ -64,6 +81,15 @@
         .buttons {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            @media (max-width: 550px) {
+                flex-direction: column;
+                justify-content: center;
+                button {
+
+                    margin-bottom: 1rem;
+                }
+            }
         } 
     }
     .previousVoted {
