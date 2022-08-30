@@ -7,29 +7,29 @@ import { Helmet } from 'react-helmet';
 
 
 const SavedPolls = () => {
-    const { currentUser } = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext);
     const [savedPolls, setSavedPolls] = useState([]);
 
     useEffect(() => {
         if (currentUser) {
-            const database = getDatabase(firebase)
-            const userID = currentUser.uid
+            const database = getDatabase(firebase);
+            const userID = currentUser.uid;
             const userRef = ref(database, `loggedIn/${userID}`);
             onValue(userRef, (response) => {
                 let newState = [];
                 const data = response.val();
                 for (let key in data) {
-                    newState.push({ key: key, question: data[key].question })
+                    newState.push({ key: key, question: data[key].question });
                 }
-                setSavedPolls(newState)
+                setSavedPolls(newState);
             })
         }
     }, [currentUser])
 
     const deletePoll = (e) => {
-        const database = getDatabase(firebase)
-        const dbRef = ref(database, `loggedIn/${currentUser.uid}/${e.target.parentNode.id}`)
-        remove(dbRef)
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `loggedIn/${currentUser.uid}/${e.target.parentNode.id}`);
+        remove(dbRef);
     }
     return (
         <>
