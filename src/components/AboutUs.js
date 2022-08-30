@@ -4,10 +4,14 @@ import Connor from '.././assets/Connor.jpg'
 import Kaitlyn from '.././assets/Kaitlyn_Resized.jpg'
 import Paridhi from '.././assets/Paridhi.jpg'
 import Nick from '.././assets/Nick.JPG'
+import { Helmet } from 'react-helmet'; 
 
 function AboutUs () {
     return (
         <section className="aboutUs">
+            <Helmet>
+                <title>About the Creators</title>
+            </Helmet>
             <div className="flexContainer">
                 <h2 className='aboutTitle'>About Us</h2>
                 <p>Hello, and welcome to our anonymous voting booth! Our clients tasked us with creating a fully accesible and responsive website that would allow users to create and share anonymous polls. Please take the time to create and share a poll!</p>

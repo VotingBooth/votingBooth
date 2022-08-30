@@ -52,7 +52,6 @@ function PollCreate() {
             return
         }
 
-
         // Firebase Database Initiatlization
         const database = getDatabase(firebase)
         let loggedInStatus

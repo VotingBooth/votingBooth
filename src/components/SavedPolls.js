@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { AuthContext } from './AuthContext';
-import firebase from './../helpers/firebase'
-
+import firebase from './../helpers/firebase';
+import { Helmet } from 'react-helmet'; 
 
 
 const SavedPolls = () => {
@@ -34,6 +34,9 @@ const SavedPolls = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Your Saved Polls</title>
+            </Helmet>
             <h2>These are your saved polls!</h2>
             {savedPolls.length !== 0 ? savedPolls.map((poll) => (
                 <li key={poll.key}>
