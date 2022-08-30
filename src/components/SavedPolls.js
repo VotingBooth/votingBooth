@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { AuthContext } from './AuthContext';
 import firebase from './../helpers/firebase';
-import { Helmet } from 'react-helmet'; 
+import { Helmet } from 'react-helmet-async';
 
 
 const SavedPolls = () => {
@@ -37,34 +37,34 @@ const SavedPolls = () => {
                 <title>Your Saved Polls</title>
             </Helmet>
 
-            
-            { savedPolls.length !== 0 ? 
+
+            {savedPolls.length !== 0 ?
                 <>
-                <h2>These are your saved polls!</h2>
-                <ul>
-                    {savedPolls.map((poll) => (
-                        <li key={poll.key}>
-                            <p>{poll.question}</p>
-                            <button onClick={deletePoll}>Delete Poll</button>
-                            <button>
-                                <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
-                                    Go to Poll
-                                </Link>
-                            </button>
-                            <button>
-                                <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
-                                    Go to Results
-                                </Link>
-                            </button>
-                        </li>))}
-                </ul>
-                <Link to="/">Create More Polls</Link>
+                    <h2>These are your saved polls!</h2>
+                    <ul>
+                        {savedPolls.map((poll) => (
+                            <li key={poll.key}>
+                                <p>{poll.question}</p>
+                                <button onClick={deletePoll}>Delete Poll</button>
+                                <button>
+                                    <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
+                                        Go to Poll
+                                    </Link>
+                                </button>
+                                <button>
+                                    <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
+                                        Go to Results
+                                    </Link>
+                                </button>
+                            </li>))}
+                    </ul>
+                    <Link to="/">Create More Polls</Link>
                 </>
-                :     
-                    !currentUser ? 
+                :
+                !currentUser ?
                     <Link to="/login">Login to Create Polls</Link>
-                    : <Link to="/">Create Polls</Link>                    
-            } 
+                    : <Link to="/">Create Polls</Link>
+            }
         </>
     )
 }

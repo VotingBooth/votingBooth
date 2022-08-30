@@ -7,7 +7,7 @@ import firebase from './../helpers/firebase';
 import { ref, onValue, getDatabase } from 'firebase/database';
 import ShareButton from './ShareButton';
 import '.././styling/PollResults.scss';
-import { Helmet } from 'react-helmet'; 
+import { Helmet } from 'react-helmet-async';
 
 function PollResults() {
     const [chartSelection, setChartSelection] = useState('bar')
