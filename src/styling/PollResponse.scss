@@ -8,6 +8,7 @@
     border: $secondary solid 3px;
     border-radius: 15px;
     padding: 0 0 1rem 1rem;
+
     .appInfo {
         display: flex;
         flex-direction: column;
@@ -15,10 +16,12 @@
         text-align: center;
         padding: 0 1rem;
         color: $offWhite;
+
         .tagline {
-            padding: 0.5rem 0 ;
+            padding: 0.5rem 0;
         }
     }
+
     .pollResponseForm {
         margin: 2rem auto 1rem;
         display: flex;
@@ -29,15 +32,17 @@
         border-radius: 15px;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
         background-color: $offWhite;
-    
+
         h2 {
             padding: 0.5rem 0;
         }
+
         .pollResponses {
             display: flex;
             flex-direction: column;
             justify-content: center;
             width: 70%;
+
             input {
                 border: none;
                 background-color: transparent;
@@ -47,25 +52,28 @@
                 padding: 0.5rem;
                 cursor: pointer;
                 transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
-    
+
                 &:hover {
                     background-color: $primary;
                     color: $offWhite
-    
                 }
             }
         }
     }
-    
+
     main {
         .toGoResults {
-            @include customButton($primary);
+            @include customButton($offWhite,
+                $primary,
+                $fourth);
         }
+
         .buttons {
             display: flex;
             justify-content: space-between;
-        } 
+        }
     }
+
     .previousVoted {
         text-align: center
     }
