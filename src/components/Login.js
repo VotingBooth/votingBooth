@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AuthContext} from './AuthContext';
+import { AuthContext } from './AuthContext';
 import { Navigate } from 'react-router-dom';
 import { signInWithGoogle, signInAnon } from '../helpers/firebase';
-import { Helmet } from 'react-helmet'; 
+import { Helmet } from 'react-helmet-async';
 
 
 function Login() {

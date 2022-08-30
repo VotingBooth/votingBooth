@@ -5,7 +5,7 @@ import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
 import ShareButton from './ShareButton';
 import LoadingScreen from "./LoadingScreen"
-import { Helmet } from 'react-helmet'; 
+import { Helmet } from 'react-helmet-async';
 
 function PollResponse() {
     const [dataPoll, setDataPoll] = useState([]);

@@ -6,6 +6,8 @@ import { filterProfanity } from '.././helpers/filterProfanity'
 import '.././styling/PollCreate.scss'
 import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
+
 
 function PollCreate() {
     const [question, setQuestion] = useState();
@@ -116,6 +118,9 @@ function PollCreate() {
 
     return (
         <div className='pollCreateContainer'>
+            <Helmet>
+                <title>Voting Booth</title>
+            </Helmet>
             <header>
                 <div className="appInfo">
                     <h2>Enter your poll question below along with options and we will create a link you can share with everyone to see everyone's preferences</h2>
