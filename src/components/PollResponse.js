@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import firebase from './../helpers/firebase';
 import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
 import '.././styling/PollResponse.scss';
-import SaveForm from './SaveForm';
 import ShareButton from './ShareButton';
 import LoadingScreen from "./LoadingScreen"
 import { Helmet } from 'react-helmet'; 
@@ -133,7 +132,6 @@ function PollResponse() {
 
                                     </div>
                                 </form>
-                                <SaveForm />
                                 <div className="buttons">
                                     <button className='toGoResults' onClick={resultsClick}>Go to Results</button>
                                     <ShareButton shareTitle='Poll' shareURL={window.location.href} />

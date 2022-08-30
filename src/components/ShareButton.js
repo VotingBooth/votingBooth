@@ -1,9 +1,10 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useEffect, useState } from "react";
 import '.././styling/ShareButton.scss';
-import ReactTooltip from "react-tooltip";
 
 function ShareButton({ shareTitle, shareURL }) {
+    const [copied, setCopied] = useState(false);
+
 
     const shareData = {
         title: shareTitle,
@@ -34,17 +35,19 @@ function ShareButton({ shareTitle, shareURL }) {
                 <div className="copyToClipBoardContainer">
                     <label className="sr-only" htmlFor="shareButton">Link to Share Poll</label>
                     <input type='text' id="shareButton" defaultValue={share} disabled/>
-                    <button className="shareButton" data-tip data-for="copySuccessful" data-event='click' clickable={true} >Copy Poll Link</button>
-                    <ReactTooltip type="success" id="copySuccessful" place="right" effect="solid" delayHide={1000}>
-                        Copied ✔
-                    </ReactTooltip>
+
+
+                    <button className="shareButton" onClick={()=> {setCopied(true)}}>
+                        {
+                            !copied ?
+                            <p>Copy Poll Link</p>
+                             :
+                            <p>Copied ✔</p>
+                        }
+                    </button>
                 </div>
             </CopyToClipboard>
-
     )
-
-
-
 }
 
 export default ShareButton
