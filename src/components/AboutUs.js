@@ -1,9 +1,9 @@
 import { FaGithubSquare, FaLinkedin, FaFolderOpen } from 'react-icons/fa';
-import '.././styling/AboutUs.scss'
-import Connor from '.././assets/Connor.jpg'
-import Kaitlyn from '.././assets/Kaitlyn_Resized.jpg'
-import Paridhi from '.././assets/Paridhi.jpg'
-import Nick from '.././assets/Nick.JPG'
+import '.././styling/AboutUs.scss';
+import Connor from '.././assets/Connor.jpg';
+import Kaitlyn from '.././assets/Kaitlyn.jpg';
+import Paridhi from '.././assets/Paridhi.jpg';
+import Nick from '.././assets/Nick.JPG';
 import { Helmet } from 'react-helmet'; 
 
 function AboutUs () {
