@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import '.././styling/ShareButton.scss';
 
 function ShareButton({ shareTitle, shareURL }) {
+    const [copied, setCopied] = useState(false);
+
 
     const shareData = {
         title: shareTitle,
@@ -33,14 +35,19 @@ function ShareButton({ shareTitle, shareURL }) {
                 <div className="copyToClipBoardContainer">
                     <label className="sr-only" htmlFor="shareButton">Link to Share Poll</label>
                     <input type='text' id="shareButton" defaultValue={share} disabled/>
-                    <button className="shareButton">Copy Poll Link</button>
+
+
+                    <button className="shareButton" onClick={()=> {setCopied(true)}}>
+                        {
+                            !copied ?
+                            <p>Copy Poll Link</p>
+                             :
+                            <p>Copied ✔</p>
+                        }
+                    </button>
                 </div>
             </CopyToClipboard>
-
     )
-
-
-
 }
 
 export default ShareButton
