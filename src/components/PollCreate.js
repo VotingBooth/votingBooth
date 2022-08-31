@@ -6,6 +6,7 @@ import { filterProfanity } from '.././helpers/filterProfanity'
 import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import ".././styling/PollCreate.scss";
 
 
 function PollCreate() {

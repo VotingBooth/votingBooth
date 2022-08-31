@@ -2,7 +2,12 @@
 @import "../mixins.scss";
 
 .navButton {
-    @include customButton($primary);
+    @include customButton($offWhite, $primary, $tertiary);
+    margin-left: 1rem;
+    @media (max-width: 550px) {
+        margin-left: 0;
+
+    } 
 
 }
 

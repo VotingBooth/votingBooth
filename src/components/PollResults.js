@@ -92,11 +92,11 @@ function PollResults() {
             </Helmet>
             <header>
                 <div className="appInfo">
-                    <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share the results with everyone.</h2>
+                    <h2><strong>Results</strong> for the most awaited poll are displayed here! Don't forget to share them with everyone.</h2>
                     <p className='tagline'>(Reducing the stress of decision making, one poll at a time) </p>
                 </div>
             </header>
-            <main className='wrapper'>
+            <main>
                 <form>
                     <legend>Select a chart type:</legend>
                     <div className="chartOptions">

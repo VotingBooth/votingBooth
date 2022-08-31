@@ -17,10 +17,7 @@ footer {
         @media (max-width: 600px) {
             flex-direction: column;
         }
-        @media (max-width: 600px) {
-            padding: 0.5rem 0;
-
-        }
+        
         .collaborators {
             @media (max-width: 430px) {
                 display: flex;
@@ -32,6 +29,10 @@ footer {
             padding: 0.25rem 0;
             color: $offWhite;
             font-size: 0.9rem;
+            @media (max-width: 600px) {
+                padding: 0.5rem 0;
+    
+            }
             a {
                 padding: 0 0.25rem;
                 transition: color 0.3s ease-in-out;
