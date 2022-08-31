@@ -1,0 +1,55 @@
+@import "../_variables.scss";
+@import "../App.scss";
+
+footer {
+    background-color: $primary;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 600px) {
+        position: static;
+        height: 12vh;
+    }
+
+    .footerContent {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+
+        @media (max-width: 600px) {
+            flex-direction: column;
+        }
+
+        .collaborators {
+            @media (max-width: 430px) {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        p {
+            padding: 0.25rem 0;
+            color: $offWhite;
+            font-size: 0.9rem;
+
+            @media (max-width: 600px) {
+                padding: 0.5rem 0;
+
+            }
+
+            a {
+                padding: 0 0.25rem;
+                transition: color 0.3s ease-in-out;
+
+                &:hover,
+                &:focus {
+                    color: $fifth;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+@import "../_variables.scss";
+@import "../mixins";
+
+
+.savedContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: $secondary;
+    border-radius: 25px;
+
+    h2 {
+        text-align: center;
+        color: $offWhite;
+        font-size: 2rem;
+        font-weight: bold;
+        width: 100%;
+        margin: 25px 0;
+        text-transform: capitalize;
+        text-decoration: underline;
+    }
+}
+
+.listContainer {
+    width: 60%;
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        background-color: $offWhite;
+        align-items: flex-end;
+        margin-bottom: 25px;
+        padding: 10px;
+        border: $secondary solid 3px;
+        border-radius: 15px;
+        box-shadow: rgba($color: $black, $alpha: 0.3) 0px 19px 38px, rgba($color: $black, $alpha: 0.22) 0px 15px 12px;
+    }
+}
+
+.question {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: $secondary;
+    padding: 15px 0 15px 0;
+}
+
+button {
+    @include customButton($offWhite, $primary, $fourth);
+    margin-bottom: 1rem;
+}
+
+.deleteButton {
+    @include customButton($offWhite, $fourth, $secondary);
+    margin-bottom: 1rem;
+
+}
+
+
+.pollLink {
+    margin-right: 10px;
+}
+
+.savePollsButtons {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 960px) {
+    .listContainer {
+        width: 80%;
+    }
+}
+
+@media(max-width: 750px) {
+    .question {
+        text-align: center;
+    }
+
+    .listContainer li {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .listContainer div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pollLink {
+        margin-right: 0;
+    }
+
+    button {
+        display: block;
+    }
+}

@@ -1,0 +1,102 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.pollResultsContainer {
+    background-color: $secondary;
+    border: $secondary solid 3px;
+    border-radius: 15px;
+    display: flex;
+    color: $offWhite;
+
+    @media (max-width: 700px) {
+        min-height: 80vh;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    header {
+        flex-basis: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .appInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .tagline {
+                padding: 0.5rem 0;
+            }
+
+            padding: 0 0.25rem;
+
+            p {
+                color: rgba($color: $offWhite, $alpha: 0.8);
+            }
+        }
+    }
+
+    main {
+        background-color: $offWhite;
+        border-radius: 15px;
+        margin: 1rem auto;
+        flex-basis: 58%;
+        color: $black;
+        width: 90%;
+
+        form {
+            legend {
+                font-weight: bold;
+            }
+
+            .chartOptions {
+                display: flex;
+
+                label {
+                    margin-right: 0.75rem;
+                    padding-left: 0.25rem;
+                    transition: color 0.3s ease-in-out;
+
+                    &:hover,
+                    &:focus {
+                        color: $primary;
+                    }
+                }
+
+                input {
+                    border: none;
+                    text-align: center;
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+
+        .chartContainer {
+            padding: 0.75rem 0;
+            width: 90%;
+            position: relative;
+
+            // @media (max-width: 700px) {
+            //     width: 90%;
+            // }
+            canvas {
+                padding: 0.5rem;
+                border: 1px $primary solid;
+                border-radius: 15px;
+            }
+
+            h3 {
+                text-align: center;
+            }
+        }
+
+        .copyToClipBoardContainer {
+            margin-bottom: 1rem;
+        }
+
+    }
+}

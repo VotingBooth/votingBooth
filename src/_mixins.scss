@@ -1,0 +1,18 @@
+@import "./_variables.scss";
+
+@mixin customButton($fontColor, $backgroundColor, $hoverColor) {
+    color: $fontColor;
+    background-image: linear-gradient(to bottom, $backgroundColor 50%, $hoverColor 50%);
+    text-transform: capitalize;
+    background-size: 100% 200%;
+    border: $hoverColor 2px solid;
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: background-position 0.25s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-position: 0 100%;
+    }
+}
