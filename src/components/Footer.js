@@ -8,7 +8,7 @@ function Footer() {
                 <p>
                     <a target="_blank" rel="noopener noreferrer" href="https://github.com/VotingBooth/votingBooth">Created at Juno</a>
                 </p>
-                <p>Collaborators -
+                <p className='collaborators'>Collaborators -
                     <a target="_blank" rel="noopener noreferrer" href="https://www.connorrobock.com/">Connor,</a>
                     <a target="_blank" rel="noopener noreferrer" href="https://kaitlynwcodes.ca/">Kaitlyn,</a>
                     <a target="_blank" rel="noopener noreferrer" href="https://portfolio.gourlay.me/">Nick,</a>

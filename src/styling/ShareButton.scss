@@ -1,6 +1,16 @@
 @import "../variables.scss";
 @import "../mixins.scss";
 
+.navButton {
+    @include customButton($offWhite, $primary, $tertiary);
+    margin-left: 1rem;
+    @media (max-width: 550px) {
+        margin-left: 0;
+
+    } 
+
+}
+
 .copyToClipBoardContainer {
     display: flex;
     flex-direction: column;
@@ -11,9 +21,14 @@
         border-radius: 5px;
     }
     margin-left: 1rem;
+    @media (max-width: 550px) {
+        margin-left: 0;
+
+    } 
 
     .shareButton {
         color: $offWhite;
+        border: $fourth 2px solid;
         width: 100%;
         background-image: linear-gradient(to bottom, $primary 50%, $fourth 50%);
         text-transform: capitalize;
@@ -21,7 +36,6 @@
         border: none;
         border-radius: 5px;
         padding: 0.25rem 0.75rem;
-        margin-bottom: 1rem ;
         cursor: pointer;
         transition: background-position 0.25s ease-in-out;
 

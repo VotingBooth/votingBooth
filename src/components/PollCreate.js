@@ -3,10 +3,10 @@ import { getDatabase, ref, push, update } from 'firebase/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { filterProfanity } from '.././helpers/filterProfanity'
-import '.././styling/PollCreate.scss'
 import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import ".././styling/PollCreate.scss";
 
 
 function PollCreate() {

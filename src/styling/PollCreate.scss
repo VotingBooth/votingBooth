@@ -32,7 +32,7 @@
         border-radius: 15px;
         box-shadow: rgba($color: $black, $alpha: 0.3) 0px 19px 38px, rgba($color: $black, $alpha: 0.22) 0px 15px 12px;
         background-color: $offWhite;
-
+        
         form {
             display: flex;
             flex-direction: column;
@@ -54,15 +54,26 @@
             }
 
             .question {
-                width: 25vw;
+                width: 35vw;
+                @media (max-width: 950px) {
+                    width: 60vw;
+                }
+                @media (max-width: 500px) {
+                    width: 75vw;
+                }
             }
 
             .answers {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-                width: 15vw;
-
+                width: 25vw;
+                @media (max-width: 950px) {
+                    width: 53vw;
+                }
+                @media (max-width: 500px) {
+                    width: 65vw;
+                }
                 input {
                     width: 100%;
                 }
