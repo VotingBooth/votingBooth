@@ -3,6 +3,8 @@ import { AuthContext } from './AuthContext';
 import { Navigate } from 'react-router-dom';
 import { signInWithGoogle, signInAnon } from '../helpers/firebase';
 import { Helmet } from 'react-helmet-async';
+import '.././styling/Login.scss';
+import { FaGoogle, FaGhost } from 'react-icons/fa';
 
 
 function Login() {
@@ -18,11 +20,25 @@ function Login() {
             <Helmet>
                 <title>Login to Save Polls</title>
             </Helmet>
-            <p>Login below to see your saved polls and results</p>
-            <p>You can also Login Anonymously, please note that this will be a one time Login only </p>
-            <button onClick={signInWithGoogle}> Login with Google</button>
-            <button onClick={signInAnon}> Anonymous Login</button>
-
+            <section className='loginContainer'>
+                <h2 className='loginTitle'>Login:</h2>
+                <div className='signInContainer'>
+                    <p>Login below to see your saved polls and results</p>
+                    <button className="loginButton" onClick={signInWithGoogle}>
+                        <div className='buttonText'>
+                            <FaGoogle />Login with Google
+                        </div>
+                    </button>
+                </div>
+                <div className='signInContainer'>
+                    <p>You can also login anonymously, please note that this will be a one time login only </p>
+                    <button className='anonSignIn loginButton' onClick={signInAnon}>
+                        <div className='buttonText'>
+                            <FaGhost /> Anonymous Login
+                        </div>
+                    </button>
+                </div>
+            </section>
         </>
     )
 }
