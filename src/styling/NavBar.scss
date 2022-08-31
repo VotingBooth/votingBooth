@@ -2,16 +2,19 @@
 
 nav {
     background-color: $primary;
-    padding: 0.5rem 1rem;
-    
+    height: 7vh;
+    display: flex;
+    align-items: center;
+
     .navContent {
         display: flex;
         justify-content: space-between;
         align-items: center;
         color: $offWhite;
+        width: 100%;
+        padding: 0 1rem;
 
         h1 {
-            font-family: $headingFont;
             font-weight: bold;
             text-transform: uppercase;
             background: linear-gradient(110deg, $fourth 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, $offWhite 34%, $fourth 34%);
@@ -21,7 +24,6 @@ nav {
             animation: Gradient 7s ease-out infinite;
             -webkit-animation: Gradient 15s ease infinite;
             -moz-animation: Gradient 5s ease infinite;
-
         }
 
         ul {
@@ -29,12 +31,15 @@ nav {
 
             li {
                 a {
+                    font-family: $headingFont;
                     padding: 1rem;
                     transition: color 0.3s ease-in-out;
+
                     @media (max-width:700px) {
                         font-size: 2rem;
                         border-bottom: $fifth 2px solid;
                     }
+
                     &:hover,
                     &:focus {
                         color: $fifth;
@@ -49,7 +54,7 @@ nav {
 .burgerButton {
     position: absolute;
     right: 20px;
-    top: 15px;
+    top: calc(3.5vh - 12.5px);
     z-index: 15;
     opacity: 0;
     height: 25px;
@@ -89,19 +94,23 @@ nav {
 
 // animation inspired by https://codepen.io/chrishodges27/pen/QxGdmb
 @keyframes Gradient {
-	0% {
-		background-position: 0% 0%
-	}
-    25% {
-		background-position: 40% 40%
+    0% {
+        background-position: 0% 0%
     }
-	50% {
-		background-position: 20% 10%
-	}
+
+    25% {
+        background-position: 40% 40%
+    }
+
+    50% {
+        background-position: 20% 10%
+    }
+
     75% {
         background-position: 40% 40%
     }
-	100% {
-		background-position: 0% 0%
-	}
+
+    100% {
+        background-position: 0% 0%
+    }
 }

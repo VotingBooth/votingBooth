@@ -13,24 +13,24 @@ import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
- <AuthProvider> 
-        <Header />
-        <div className='wrapper'>
-          <div>
-            <Routes>
-              <Route path='/' element={<PollCreate />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/saved' element={<SavedPolls />} />
-              <Route path='/poll/:pollID' element={<PollResponse />} />
-              <Route path='/poll/:uid/:pollID' element={<PollResponse />} />
-              <Route path='/poll/:pollID/results' element={<PollResults />} />
-              <Route path='/poll/:uid/:pollID/results' element={<PollResults />} />
-              <Route path='/about' element={<AboutUs />} />
-              <Route path='*' element={<ErrorPage />} />
-            </Routes>
-          </div>
+    <AuthProvider>
+      <Header />
+      <div className='wrapper'>
+        <div className='mainContent'>
+          <Routes>
+            <Route path='/' element={<PollCreate />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/saved' element={<SavedPolls />} />
+            <Route path='/poll/:pollID' element={<PollResponse />} />
+            <Route path='/poll/:uid/:pollID' element={<PollResponse />} />
+            <Route path='/poll/:pollID/results' element={<PollResults />} />
+            <Route path='/poll/:uid/:pollID/results' element={<PollResults />} />
+            <Route path='/about' element={<AboutUs />} />
+            <Route path='*' element={<ErrorPage />} />
+          </Routes>
         </div>
-        <Footer />
+      </div>
+      <Footer />
     </AuthProvider>
   );
 }

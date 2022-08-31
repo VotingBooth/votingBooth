@@ -4,18 +4,17 @@
 
 .aboutUs {
     margin: 25px 0 50px 0;
+
     p {
         width: 80%;
         text-align: center;
         color: $offWhite;
-        font-family: $paraFont;
         margin-top: 15px;
     }
 }
 
 .aboutTitle {
     text-align: center;
-    font-family: $headingFont;
     color: $offWhite;
     font-size: 2rem;
     font-weight: bold;
@@ -26,7 +25,6 @@
 
 .name {
     text-align: center;
-    font-family: $headingFont;
     font-weight: bold;
     font-size: 1.5rem;
     // text-decoration: underline;
@@ -40,7 +38,7 @@
 }
 
 .imgContainer {
-    width: calc( ( 80%/2 ) - 50px);
+    width: calc((80%/2) - 50px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,14 +58,17 @@
     justify-content: center;
     font-size: 2rem;
     margin-top: 15px;
-        a {
-            padding: 0 5px 0 5px;
-            color: $offWhite;
-            transition: color 0.4s ease-in-out;
-                &:hover, &:focus {
-                    color: $primary;
-                }
+
+    a {
+        padding: 0 5px 0 5px;
+        color: $offWhite;
+        transition: color 0.4s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $primary;
         }
+    }
 }
 
 // About Us Media Queries
@@ -84,9 +85,9 @@
         justify-content: center;
         align-items: center;
     }
+
     .imgContainer {
         width: 70%;
         margin: 15px;
     }
 }
-

@@ -2,35 +2,35 @@
 @import "../mixins";
 
 
-.savedContainer{
+.savedContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: $secondary;
     border-radius: 25px;
-    margin: 25px 0 50px 0;
-    h2{
+
+    h2 {
         text-align: center;
-            font-family: $headingFont;
-            color: $offWhite;
-            font-size: 2rem;
-            font-weight: bold;
-            width: 100%;
-            margin:25px 0;
-            text-transform: capitalize;
-            text-decoration: underline;
+        color: $offWhite;
+        font-size: 2rem;
+        font-weight: bold;
+        width: 100%;
+        margin: 25px 0;
+        text-transform: capitalize;
+        text-decoration: underline;
     }
 }
 
-.listContainer{
-    width:60%;
-    li{
+.listContainer {
+    width: 60%;
+
+    li {
         display: flex;
         justify-content: space-between;
         background-color: $offWhite;
         align-items: flex-end;
         margin-bottom: 25px;
-        padding:10px;
+        padding: 10px;
         border: $secondary solid 3px;
         border-radius: 15px;
         box-shadow: rgba($color: $black, $alpha: 0.3) 0px 19px 38px, rgba($color: $black, $alpha: 0.22) 0px 15px 12px;
@@ -38,7 +38,6 @@
 }
 
 .question {
-    font-family: $headingFont;
     font-weight: bold;
     font-size: 1.5rem;
     color: $secondary;
@@ -51,45 +50,52 @@ button {
 }
 
 .deleteButton {
-    @include customButton($offWhite,$fourth, $secondary);
+    @include customButton($offWhite, $fourth, $secondary);
     margin-bottom: 1rem;
 
 }
 
 
-.pollLink{
+.pollLink {
     margin-right: 10px;
 }
 
+.savePollsButtons {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 960px) {
-    .listContainer{
-        width:80%;
+    .listContainer {
+        width: 80%;
     }
 }
 
-@media(max-width: 750px ){
+@media(max-width: 750px) {
     .question {
-            text-align: center;
-        }
-    
-        .listContainer li {
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .listContainer div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-    
-        .pollLink {
-            margin-right: 0;
-        }
-        button {
-            display: block;
-        }
+        text-align: center;
+    }
+
+    .listContainer li {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .listContainer div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pollLink {
+        margin-right: 0;
+    }
+
+    button {
+        display: block;
+    }
 }
-
-

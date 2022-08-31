@@ -30,7 +30,7 @@ function PollResults() {
         }
         const dbRef = ref(database, loggedInPoll)
 
-        onValue(dbRef, (response) => {
+        let unsubscribe = onValue(dbRef, (response) => {
             const totals = Object.values(response.val().answer)
             setPollTitle(response.val().question)
             setPollResults(Object.values(response.val().answer))
@@ -42,6 +42,7 @@ function PollResults() {
                 setTotalVotes(sum)
             }
         })
+        unsubscribe()
     }, [pollID, uid])
 
     const options = {
