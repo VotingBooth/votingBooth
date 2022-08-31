@@ -4,6 +4,7 @@ import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { AuthContext } from './AuthContext';
 import firebase from './../helpers/firebase';
 import { Helmet } from 'react-helmet-async';
+import ".././styling/SavedPolls.scss"
 
 
 const SavedPolls = () => {
@@ -39,31 +40,40 @@ const SavedPolls = () => {
 
 
             {savedPolls.length !== 0 ?
-                <>
+                <section className="savedContainer">
                     <h2>These are your saved polls!</h2>
-                    <ul>
+                    <ul className="listContainer">
                         {savedPolls.map((poll) => (
                             <li key={poll.key}>
-                                <p>{poll.question}</p>
-                                <button onClick={deletePoll}>Delete Poll</button>
-                                <button>
-                                    <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
-                                        Go to Poll
-                                    </Link>
-                                </button>
-                                <button>
-                                    <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
-                                        Go to Results
-                                    </Link>
-                                </button>
+                                <div>
+                                    <p className="question">{poll.question}</p>
+                                    <button className="pollLink">
+                                        <Link to={`/poll/${[currentUser.uid]}/${poll.key}`}>
+                                            Go to Poll
+                                        </Link>
+                                    </button>
+                                    <button>
+                                        <Link to={`/poll/${[currentUser.uid]}/${poll.key}/results`}>
+                                            Go to Results
+                                        </Link>
+                                    </button>
+                                </div>
+                                <button className="deleteButton" onClick={deletePoll}>Delete Poll</button>
                             </li>))}
                     </ul>
-                    <Link to="/">Create More Polls</Link>
-                </>
+                    <button>
+                        <Link to="/">Create More Polls</Link>
+                    </button>
+                </section>
                 :
                 !currentUser ?
-                    <Link to="/login">Login to Create Polls</Link>
-                    : <Link to="/">Create Polls</Link>
+                    <button>
+                        <Link to="/login">Login to Create Polls</Link>
+                    </button>
+                    : 
+                    <button>
+                        <Link to="/">Create Polls</Link>
+                    </button>
             }
         </>
     )
