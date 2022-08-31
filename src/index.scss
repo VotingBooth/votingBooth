@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -5,7 +7,8 @@ html {
 }
 
 body {
-  margin: 0
+  margin: 0;
+  font-family: $paraFont;
 }
 
 article,
@@ -18,11 +21,11 @@ section {
 }
 
 h1 {
-  font-size: clamp( 1.2rem, 0.8rem + 1vw, 2rem );
+  font-size: clamp(1.2rem, 0.8rem + 1vw, 2rem);
 }
 
 h2 {
-  font-size: clamp( 1rem, 1rem + 1vw, 1.3rem );
+  font-size: clamp(1rem, 1rem + 1vw, 1.3rem);
 
 }
 
@@ -127,7 +130,6 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0
@@ -273,6 +275,14 @@ a,
 button {
   font-weight: normal;
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $headingFont;
 }
 
 

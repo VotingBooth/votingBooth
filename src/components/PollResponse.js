@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import firebase from './../helpers/firebase';
-import { ref, getDatabase, onValue, update, increment } from 'firebase/database'
+import { ref, getDatabase, onValue, update, increment, off } from 'firebase/database'
 import '.././styling/PollResponse.scss';
 import ShareButton from './ShareButton';
 import LoadingScreen from "./LoadingScreen"
@@ -28,7 +28,6 @@ function PollResponse() {
     }
 
     useEffect(() => {
-
         // Check voted status in local storage
         const voted = localStorage.getItem(`${pollID}`);
         setVotedStatus(voted);
@@ -43,7 +42,7 @@ function PollResponse() {
             loggedInPoll = `anonymous/${pollID}`
         }
         const dbRef = ref(database, loggedInPoll)
-        onValue(dbRef, (response) => {
+        let unsubscribe = onValue(dbRef, (response) => {
             setDataPoll(response.val().question)
             const answers = Object.keys(response.val().answer)
             setAnswer1(answers[0])
@@ -54,7 +53,7 @@ function PollResponse() {
         setTimeout(() => {
             setLoading(false)
         }, 450)
-
+        unsubscribe()
     }, [pollID, dataPoll, uid])
 
     const handleClick = (e) => {

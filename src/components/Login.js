@@ -33,7 +33,7 @@ function Login() {
                 </div>
                 <div className='signInContainer'>
                     <p>You can also login anonymously, please note that this will be a one time login only </p>
-                    <button className='anonSignIn loginButton' onClick={signInAnon}>
+                    <button className='loginButton' onClick={signInAnon}>
                         <div className='buttonText'>
                             <FaGhost /> Anonymous Login
                         </div>

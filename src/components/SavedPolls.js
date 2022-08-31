@@ -27,9 +27,9 @@ const SavedPolls = () => {
         }
     }, [currentUser])
 
-    const deletePoll = (e) => {
+    const deletePoll = (pollID) => {
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `loggedIn/${currentUser.uid}/${e.target.parentNode.id}`);
+        const dbRef = ref(database, `loggedIn/${currentUser.uid}/${pollID}`);
         remove(dbRef);
     }
     return (
@@ -58,7 +58,7 @@ const SavedPolls = () => {
                                         </Link>
                                     </button>
                                 </div>
-                                <button className="deleteButton" onClick={deletePoll}>Delete Poll</button>
+                                <button className="deleteButton" onClick={() => deletePoll(poll.key)}>Delete Poll</button>
                             </li>))}
                     </ul>
                     <button>
@@ -67,13 +67,17 @@ const SavedPolls = () => {
                 </section>
                 :
                 !currentUser ?
-                    <button>
-                        <Link to="/login">Login to Create Polls</Link>
-                    </button>
-                    : 
-                    <button>
-                        <Link to="/">Create Polls</Link>
-                    </button>
+                    <div className="savePollsButtons">
+                        <button >
+                            <Link to="/login">Login to Create Polls</Link>
+                        </button>
+                    </div>
+                    :
+                    <div className="savePollsButtons">
+                        <button >
+                            <Link to="/">Create Polls</Link>
+                        </button>
+                    </div>
             }
         </>
     )
