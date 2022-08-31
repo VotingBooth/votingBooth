@@ -6,11 +6,11 @@
 .loginContainer {
     background-color: $secondary;
     border-radius: 25px;
-    margin: 25px auto;
     display: flex;
     flex-direction: column;
     padding: 25px 0 25px 0;
     width: 80%;
+    margin: 0 auto;
 
     p {
         text-align: center;

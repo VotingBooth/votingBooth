@@ -16,3 +16,13 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+.mainContent {
+  min-height: calc(88vh - 3rem);
+  margin: 1.5rem 0;
+
+  @media (max-width: 600px) {
+    min-height: calc(81vh - 3rem);
+
+  }
+}
