@@ -6,9 +6,11 @@ import Paridhi from '.././assets/Paridhi.jpg';
 import Nick from '.././assets/Nick.JPG';
 import { Helmet } from 'react-helmet-async';
 
-function AboutUs () {
+// Component for the About Us Page
+function AboutUs() {
     return (
         <section className="aboutUs">
+            {/* Helmet used to update Document Title */}
             <Helmet>
                 <title>About the Creators</title>
             </Helmet>
@@ -17,7 +19,7 @@ function AboutUs () {
                 <p>Hello, and welcome to our anonymous voting booth! Our clients tasked us with creating a fully accesible and responsive website that would allow users to create and share anonymous polls. Please take the time to create and share a poll!</p>
                 <div className="imgContainer">
                     <h3 className='name'>Connor Robock</h3>
-                    <img src={Connor} alt="headshot of creators"/>
+                    <img src={Connor} alt="headshot of creators" />
                     <div className="socialContainer">
                         <a target="_blank" rel="noopener noreferrer" href="https://github.com/ConnorRobock" >
                             <FaGithubSquare />
@@ -32,7 +34,7 @@ function AboutUs () {
                 </div>
                 <div className="imgContainer">
                     <h3 className='name'>Kaitlyn Wickson</h3>
-                    <img src={Kaitlyn} alt="headshot of creators"/>
+                    <img src={Kaitlyn} alt="headshot of creators" />
                     <div className="socialContainer">
                         <a target="_blank" rel="noopener noreferrer" href="https://github.com/kaitlynw88">
                             <FaGithubSquare />
@@ -47,7 +49,7 @@ function AboutUs () {
                 </div>
                 <div className="imgContainer">
                     <h3 className='name'>Nick Gourlay</h3>
-                    <img src={Nick} alt="headshot of creators"/>
+                    <img src={Nick} alt="headshot of creators" />
                     <div className="socialContainer">
                         <a target="_blank" rel="noopener noreferrer" href="https://github.com/NicholG90">
                             <FaGithubSquare />
@@ -62,7 +64,7 @@ function AboutUs () {
                 </div>
                 <div className="imgContainer">
                     <h3 className='name'>Paridhi Shah</h3>
-                    <img src={Paridhi} alt="headshot of creators"/>
+                    <img src={Paridhi} alt="headshot of creators" />
                     <div className="socialContainer">
                         <a target="_blank" rel="noopener noreferrer" href="https://github.com/paridhishah96">
                             <FaGithubSquare />

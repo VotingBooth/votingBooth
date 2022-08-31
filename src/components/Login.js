@@ -6,17 +6,18 @@ import { Helmet } from 'react-helmet-async';
 import '.././styling/Login.scss';
 import { FaGoogle, FaGhost } from 'react-icons/fa';
 
-
+// Login Component to allow user to log in to account to save Polls
 function Login() {
+    // Creating a variable containing currentUser item that is imported through the AuthContext Component.
     const { currentUser } = useContext(AuthContext);
-
+    // if currentUser exists (and as such they are already logged in) we navigate user directly to the saved polls page as they have no use for the login page
     if (currentUser) {
         return <Navigate to="/saved" replace />;
     }
 
-
     return (
         <>
+            {/* Helmet used to update Document Title */}
             <Helmet>
                 <title>Login to Save Polls</title>
             </Helmet>

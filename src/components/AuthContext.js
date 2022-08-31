@@ -1,8 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { auth } from "./../helpers/firebase";
 
-
-
+// Auth Context Component used to share logged in user status across components. Specifically the currentUser state.
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -11,12 +10,12 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-            setCurrentUser(user)
+            setCurrentUser(user);
         });
     }, []);
 
     return (
-        <AuthContext.Provider value={{currentUser}}>
+        <AuthContext.Provider value={{ currentUser }}>
             {children}
         </AuthContext.Provider>
     );
