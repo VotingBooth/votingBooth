@@ -31,7 +31,7 @@ function ShareButton({ shareTitle, shareURL }) {
 
     }
     return (
-        navigator.canShare ? <button onClick={handleClick} className='shareButton'>Share!</button> :
+        navigator.canShare ? <button onClick={handleClick} className='navButton'>Share!</button> :
             // if page doesn't have navigator, show url
             // use copy to clipboard component to copy url to users clipboard on click
             <CopyToClipboard text={share}>
