@@ -31,10 +31,12 @@ function PollResults() {
         const dbRef = ref(database, loggedInPoll)
 
         onValue(dbRef, (response) => {
+            // error handling to be done for when you delete poll from SavedPolls and there seems to be a response.val is missing error!
             const totals = Object.values(response.val().answer)
+            const removeUndefined = Object.fromEntries(Object.entries(response.val().answer).filter(([key]) => !key.includes('undefined')))
             setPollTitle(response.val().question)
-            setPollResults(Object.values(response.val().answer))
-            setPollLabels(Object.keys(response.val().answer).filter(key => key !== 'undefined'))
+            setPollResults(Object.values(removeUndefined))
+            setPollLabels(Object.keys(removeUndefined))
 
             let sum = 0
             for (let number of totals) {
