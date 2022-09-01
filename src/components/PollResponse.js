@@ -42,7 +42,7 @@ function PollResponse() {
             loggedInPoll = `anonymous/${pollID}`
         }
         const dbRef = ref(database, loggedInPoll)
-        let unsubscribe = onValue(dbRef, (response) => {
+        onValue(dbRef, (response) => {
             setDataPoll(response.val().question)
             const answers = Object.keys(response.val().answer)
             setAnswer1(answers[0])
@@ -53,7 +53,6 @@ function PollResponse() {
         setTimeout(() => {
             setLoading(false)
         }, 450)
-        unsubscribe()
     }, [pollID, dataPoll, uid])
 
     const handleClick = (e) => {
