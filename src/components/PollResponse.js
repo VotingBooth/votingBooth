@@ -106,11 +106,22 @@ function PollResponse() {
                                 <form className='pollResponseForm'>
                                     <h2>{dataPoll}</h2>
                                     <div className='pollResponses'>
-                                        <label htmlFor='pollAnswer1' className='sr-only'>{answer1}</label>
-                                        <input type="button" id="pollAnswer1" value={answer1} name="pollQuestion" onClick={handleClick}
-                                        />
-                                        <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
-                                        <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} />
+                                        {
+                                        answer1 && answer1 !== "undefined" ?
+                                            <>
+                                                <label htmlFor='pollAnswer1' className='sr-only'>{answer1}</label>
+                                                <input type="button" id="pollAnswer1" value={answer1} name="pollQuestion" onClick={handleClick}/>
+                                            </>
+                                            : null
+                                        }
+                                        {
+                                        answer2 && answer2 !== "undefined" ?
+                                            <>
+                                                <label htmlFor='pollAnswer2' className='sr-only'>{answer2}</label>
+                                                <input type="button" id="pollAnswer2" value={answer2} name="pollQuestion" onClick={handleClick} />
+                                            </>
+                                            : null
+                                        }
                                         {
                                             answer3 && answer3 !== "undefined" ?
                                                 <>
