@@ -32,9 +32,10 @@ function PollResults() {
 
         onValue(dbRef, (response) => {
             const totals = Object.values(response.val().answer)
+            const removeUndefined = Object.fromEntries(Object.entries(response.val().answer).filter(([key]) => !key.includes('undefined')))
             setPollTitle(response.val().question)
-            setPollResults(Object.values(response.val().answer))
-            setPollLabels(Object.keys(response.val().answer).filter(key => key !== 'undefined'))
+            setPollResults(Object.values(removeUndefined))
+            setPollLabels(Object.keys(removeUndefined))
 
             let sum = 0
             for (let number of totals) {
