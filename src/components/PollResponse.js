@@ -43,6 +43,7 @@ function PollResponse() {
         }
         const dbRef = ref(database, loggedInPoll)
         onValue(dbRef, (response) => {
+          // error handling to be done for when you delete poll from SavedPolls and there seems to be a response.val is missing error!
             setDataPoll(response.val().question)
             const answers = Object.keys(response.val().answer)
             setAnswer1(answers[0])
