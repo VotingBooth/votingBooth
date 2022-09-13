@@ -1,4 +1,5 @@
 Voting Booth
+================
 
 An anonymous voting booth that creates polls. They polls and results are shareable. The backend used for this project is firebase.
 
